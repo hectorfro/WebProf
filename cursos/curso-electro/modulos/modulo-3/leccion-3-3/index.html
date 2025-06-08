@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 3.3 - Campo Magnético</title>
+    <link rel="stylesheet" href="../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../css/electro-styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .lesson-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .lesson-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .lesson-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .pdf-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .pdf-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .pdf-title {
+            font-size: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .pdf-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 80vh;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        .nav-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .lesson-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .pdf-controls {
+                flex-direction: column;
+            }
+            
+            .pdf-viewer {
+                height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header de la lección -->
+        <div class="header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Curso Electromagnetismo</a> &gt; 
+                <a href="../index.html">Módulo III</a> &gt; 
+                <span>Lección 1.3</span>
+            </div>
+            
+            <h1 class="lesson-title">Campo Magnético</h1>
+            <p class="lesson-subtitle">Bienvenida </p>
+            
+            <div class="lesson-info">
+                <div class="info-item">
+                    <span>📅</span> Duración: 4 horas
+                </div>
+                <div class="info-item">
+                    <span>📚</span> Tipo: Conceptos Básicos
+                </div>
+                <div class="info-item">
+                    <span>🎯</span> Modalidad: Teórica
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor del PDF -->
+        <div class="pdf-container">
+            <div class="pdf-header">
+                <h2 class="pdf-title">Presentación de la Lección</h2>
+                <div class="pdf-controls">
+                    <button class="btn btn-secondary" onclick="toggleFullscreen()">
+                        <span>🔍</span> Pantalla Completa
+                    </button>
+                    <a href="S09_CampoB.pdf" target="_blank" class="btn btn-primary">
+                        <span>📄</span> Abrir PDF
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Visor de PDF -->
+            <iframe 
+                src="S09_CampoB.pdf" 
+                class="pdf-viewer" 
+                id="pdfViewer"
+                title="Presentación de la lección">
+                <p>Tu navegador no soporta PDFs. 
+                   <a href="S09_CampoB.pdf" target="_blank">Haz clic aquí para descargar el PDF</a>
+                </p>
+            </iframe>
+        </div>
+
+        <!-- Navegación entre lecciones -->
+        <div class="navigation">
+            <a href="../leccion-3-2/index.html" class="btn nav-btn btn-primary">
+                ← Lección Anterior
+            </a>
+            <a href="../../modulo-4/leccion-4-1/index.html" class="btn nav-btn btn-primary">
+                Siguiente Lección →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleFullscreen() {
+            const pdfViewer = document.getElementById('pdfViewer');
+            
+            if (!document.fullscreenElement) {
+                pdfViewer.requestFullscreen().catch(err => {
+                    console.log('Error al entrar en pantalla completa:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Detectar cambios en pantalla completa
+        document.addEventListener('fullscreenchange', function() {
+            const btn = document.querySelector('.pdf-controls button');
+            if (document.fullscreenElement) {
+                btn.innerHTML = '<span>🔍</span> Salir Pantalla Completa';
+            } else {
+                btn.innerHTML = '<span>🔍</span> Pantalla Completa';
+            }
+        });
+
+        // Marcar lección como vista (para futuro seguimiento de progreso)
+        localStorage.setItem('leccion-3-3-viewed', 'true');
+        
+        console.log('Lección 3.3 cargada correctamente');
+    </script>
+</body>
+</html>

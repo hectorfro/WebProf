@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Electromagnetismo</title>
+    <link rel="stylesheet" href="../../../../assets/css/global-styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  /* Color de fondo explícito */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;  /* Asegura que el fondo cubra toda la altura */
+        }
+        .course-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .course-content h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.8em;
+            color: #2c3e50;
+        }
+
+        .course-description {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 1.0em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .modules-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .module-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .module-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .module-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .module-card a {
+            display: inline-block;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            padding: 8px 0;
+        }
+
+        .module-card a:hover {
+            color: #2980b9;
+        }
+
+        .course-objectives {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .course-objectives h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .course-objectives ul {
+            padding-left: 20px;
+        }
+
+        .course-objectives li {
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        @media (max-width: 768px) {
+            .course-content {
+                padding: 10px;
+            }
+
+            .course-content h1 {
+                font-size: 2em;
+            }
+
+            .modules-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="course-content">
+        <h1  style="color: white;" >Curso de Electromagnetismo</h1>
+
+        <div class="course-description">
+            <h2>Descripción del Curso</h2>
+            <p>Este material abarca conceptos fundamentales de electrostática, comenzando con la definición y 
+                cálculo del campo eléctrico generado por distribuciones de carga continuas, contrastando 
+                con cargas puntuales y presentando las densidades de carga lineal, superficial y volumétrica. 
+                Se detalla un proceso de cuatro pasos para determinar el campo eléctrico de objetos extendidos, 
+                 ilustrado con ejemplos como un hilo o un anillo cargado uniformemente, utilizando sumatorias 
+                 numéricas y, idealmente, integración para obtener soluciones analíticas. Se  
+                 introduce el concepto de líneas de campo eléctrico como una herramienta visual para 
+                 representar la dirección y magnitud del campo, y explora el comportamiento de los 
+                 conductores en presencia de campos eléctricos, explicando la polarización, el concepto de 
+                 velocidad de deriva y la condición de equilibrio electrostático, donde el 
+                 campo eléctrico dentro de un conductor es cero.  Finalmente, se introduce la Ley de Gauss 
+                 como una poderosa herramienta para determinar el campo eléctrico en sistemas con alta 
+                 simetría, explicando el concepto de flujo eléctrico y cómo aplicar la ley para diferentes 
+                 configuraciones de carga.
+            </p>    
+        </div>
+
+        <div class="modules-list">
+            <div class="module-card">
+                <h3>Módulo I - Campo Eléctrico</h3>
+                <p>Fundamentos de la electricidad, propiedades de la carga eléctrica y la ley de Coulomb.</p>
+                <a href="modulos/modulo-1/index.html">Ver módulo →</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Módulo II - Potencial Eléctrico</h3>
+                <p>Energía potencial eléctrica, potencial eléctrico y capacitancia.</p>
+                <a href="modulos/modulo-2/index.html">Ver módulo →</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Módulo III - Corriente Eléctrica</h3>
+                <p>Corriente eléctrica, resistencia y circuitos eléctricos.</p>
+                <a href="modulos/modulo-3/index.html">Ver módulo →</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Módulo IV - Campo Magnético</h3>
+                <p>Campo magnético, fuentes de campo magnético e inducción electromagnética.</p>
+                <a href="modulos/modulo-4/index.html">Ver módulo →</a>
+            </div>
+        </div>
+
+        <div class="course-objectives">
+            <h2>Objetivos Generales del Curso</h2>
+            <ul>
+                <li>Comprender los fundamentos del campo eléctrico y magnético</li>
+                <li>Desarrollar habilidades en el análisis de circuitos eléctricos</li>
+                <li>Entender las leyes fundamentales del electromagnetismo</li>
+                <li>Aplicar los conceptos aprendidos en situaciones prácticas</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
