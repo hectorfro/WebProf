@@ -609,3 +609,278 @@ html {
     background: rgba(102, 126, 234, 0.3);
     color: #333;
 }
+
+/* =================================================================
+   SIDEBAR DE NAVEGACIÓN PARA LECCIONES
+   ================================================================= */
+
+.lesson-layout {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+.sidebar {
+    width: 320px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-280px);
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.course-info h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+
+.course-info h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sidebar-content {
+    padding: 20px 0;
+}
+
+.lessons-nav {
+    list-style: none;
+}
+
+.lesson-nav-item {
+    margin: 0;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.lesson-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.lesson-nav-link:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateX(5px);
+}
+
+.lesson-nav-link.active {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.2), transparent);
+    border-right: 4px solid #667eea;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.lesson-nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #667eea;
+}
+
+.lesson-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.lesson-nav-link.active .lesson-icon {
+    background: #667eea;
+    color: white;
+}
+
+.lesson-details {
+    flex: 1;
+}
+
+.lesson-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.lesson-meta {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    gap: 10px;
+}
+
+.lesson-status-icon {
+    margin-left: auto;
+    font-size: 16px;
+}
+
+.sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    color: #667eea;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.sidebar-toggle:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.sidebar.collapsed + .main-content .sidebar-toggle {
+    transform: rotate(180deg);
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 320px;
+    transition: margin-left 0.3s ease;
+    min-height: 100vh;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 40px;
+}
+
+.navigation-controls {
+    position: sticky;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 2px solid rgba(102, 126, 234, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.nav-control-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.nav-control-btn:hover:not(.disabled) {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+}
+
+.nav-control-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =================================================================
+   RESPONSIVE PARA SIDEBAR
+   ================================================================= */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 280px;
+    }
+    
+    .sidebar.collapsed {
+        transform: translateX(-240px);
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .sidebar.collapsed + .main-content {
+        margin-left: 0;
+    }
+    
+    .sidebar-toggle {
+        top: 15px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+    }
+    
+    .sidebar.collapsed {
+        transform: translateX(-100%);
+    }
+}
+
+/* Animación suave para el scroll */
+.sidebar {
+    scroll-behavior: smooth;
+}
+
+/* Mejora visual del scroll */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.5);
+}
+

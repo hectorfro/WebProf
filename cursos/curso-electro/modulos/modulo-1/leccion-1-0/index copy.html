@@ -333,28 +333,18 @@
 
     <script>
         // Función para toggle del sidebar
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.getElementById('sidebarToggle');
-    
-    if (window.innerWidth <= 768) {
-        // Comportamiento móvil
-        sidebar.classList.toggle('show');
-        if (sidebar.classList.contains('show')) {
-            toggle.innerHTML = '✕';
-        } else {
-            toggle.innerHTML = '☰';
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            
+            sidebar.classList.toggle('collapsed');
+            
+            if (sidebar.classList.contains('collapsed')) {
+                toggle.innerHTML = '☰';
+            } else {
+                toggle.innerHTML = '✕';
+            }
         }
-    } else {
-        // Comportamiento desktop
-        sidebar.classList.toggle('collapsed');
-        if (sidebar.classList.contains('collapsed')) {
-            toggle.innerHTML = '☰';
-        } else {
-            toggle.innerHTML = '✕';
-        }
-    }
-}
 
         function toggleFullscreen() {
             const pdfViewer = document.getElementById('pdfViewer');
