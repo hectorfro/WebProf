@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lección 0.1 - Campo Eléctrico</title>
-    <link rel="stylesheet" href="../../../../assets/css/global-styles.css">
-    <link rel="stylesheet" href="../../css/electro-styles.css">
+    <title>Lección 1.1 - Campo Eléctrico</title>
+    <link rel="stylesheet" href="../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../css/electro-styles.css">
+    <link rel="stylesheet" href="../../../css/lesson-sidebar.css">
     <style>
         * {
             margin: 0;
@@ -84,7 +85,7 @@
 
         .pdf-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
             padding-bottom: 15px;
@@ -181,69 +182,193 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header de la lección -->
-        <div class="header">
-            <div class="breadcrumb">
-                <a href="../../index.html">Curso Electromagnetismo</a> &gt; 
-                <a href="../index.html">Módulo I</a> &gt; 
-                <span>Lección 1.1</span>
+    <div class="lesson-layout">
+        <!-- Sidebar de navegación -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="course-info">
+                    <h3>Física II</h3>
+                    <h2>⚡ Electromagnetismo</h2>
+                    <div class="module-title">📖 Módulo I - Campo Eléctrico</div>
+                </div>
             </div>
             
-            <h1 class="lesson-title">Campo Eléctrico</h1>
-            <p class="lesson-subtitle">Bienvenido</p>
+            <div class="sidebar-content">
+                <ul class="lessons-nav">
+                    <li class="lesson-nav-item">
+                        <a href="../leccion-1-0/index.html" class="lesson-nav-link">
+                            <div class="lesson-icon">1.0</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Introducción al Curso</div>
+                                <div class="lesson-meta">
+                                    <span>📅 4h</span>
+                                    <span>🎯 Teórica</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                    <li class="lesson-nav-item">
+                        <a href="index.html" class="lesson-nav-link active">
+                            <div class="lesson-icon">1.1</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Campo Eléctrico</div>
+                                <div class="lesson-meta">
+                                    <span>📅 6h</span>
+                                    <span>🎯 Teórica</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                    <li class="lesson-nav-item">
+                        <a href="../leccion-1-2/index.html" class="lesson-nav-link">
+                            <div class="lesson-icon">1.2</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Distribuciones de cargas</div>
+                                <div class="lesson-meta">
+                                    <span>📅 6h</span>
+                                    <span>🎯 Teórica</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                    <li class="lesson-nav-item">
+                        <a href="../leccion-1-3/index.html" class="lesson-nav-link">
+                            <div class="lesson-icon">1.3</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Ley de Gauss</div>
+                                <div class="lesson-meta">
+                                    <span>📅 6h</span>
+                                    <span>🎯 Teórica</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                    <li class="lesson-nav-item">
+                        <a href="recursos/index.html" class="lesson-nav-link">
+                            <div class="lesson-icon">📖</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Recursos</div>
+                                <div class="lesson-meta">
+                                    <span>📚 Materiales</span>
+                                    <span>🔗 Enlaces</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">📋</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             
-            <div class="lesson-info">
-                <div class="info-item">
-                    <span>📅</span> Duración: 4 horas
-                </div>
-                <div class="info-item">
-                    <span>📚</span> Tipo: Conceptos Básicos
-                </div>
-                <div class="info-item">
-                    <span>🎯</span> Modalidad: Teórica
-                </div>
+            <div class="navigation-controls">
+                <a href="../leccion-1-0/index.html" class="nav-control-btn">
+                    ← Anterior
+                </a>
+                <a href="../leccion-1-2/index.html" class="nav-control-btn">
+                    Siguiente →
+                </a>
             </div>
         </div>
 
-        <!-- Contenedor del PDF -->
-        <div class="pdf-container">
-            <div class="pdf-header">
-                <h2 class="pdf-title">Presentación de la Lección</h2>
-                <div class="pdf-controls">
-                    <button class="btn btn-secondary" onclick="toggleFullscreen()">
-                        <span>🔍</span> Pantalla Completa
-                    </button>
-                    <a href="S01_CampoE.pdf" target="_blank" class="btn btn-primary">
-                        <span>📄</span> Abrir PDF
+        <!-- Botón para mostrar/ocultar sidebar -->
+        <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+            ☰
+        </button>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="container">
+                <!-- Header de la lección -->
+                <div class="header">
+                    <div class="breadcrumb">
+                        <a href="../../../index.html">Curso Electromagnetismo</a> &gt; 
+                        <a href="../index.html">Módulo I</a> &gt; 
+                        <span>Lección 1.1</span>
+                    </div>
+                    
+                    <h1 class="lesson-title">Campo Eléctrico</h1>
+                    <p class="lesson-subtitle">Conceptos fundamentales de campos eléctricos y ley de Coulomb</p>
+                    
+                    <div class="lesson-info">
+                        <div class="info-item">
+                            <span>📅</span> Duración: 6 horas
+                        </div>
+                        <div class="info-item">
+                            <span>📚</span> Tipo: Fundamentos
+                        </div>
+                        <div class="info-item">
+                            <span>🎯</span> Modalidad: Teórica
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor del PDF -->
+                <div class="pdf-container">
+                    <div class="pdf-header">
+                        <h2 class="pdf-title">Presentación de la Lección</h2>
+                        <div class="pdf-controls">
+                            <button class="btn btn-secondary" onclick="toggleFullscreen()">
+                                <span>🔍</span> Pantalla Completa
+                            </button>
+                            <a href="S01_CampoE.pdf" target="_blank" class="btn btn-primary">
+                                <span>📄</span> Abrir PDF
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Visor de PDF -->
+                    <iframe 
+                        src="S01_CampoE.pdf" 
+                        class="pdf-viewer" 
+                        id="pdfViewer"
+                        title="Presentación de la lección">
+                        <p>Tu navegador no soporta PDFs. 
+                           <a href="S01_CampoE.pdf" target="_blank">Haz clic aquí para descargar el PDF</a>
+                        </p>
+                    </iframe>
+                </div>
+
+                <!-- Navegación entre lecciones -->
+                <div class="navigation">
+                    <a href="../leccion-1-0/index.html" class="btn nav-btn btn-secondary">
+                        ← Lección Anterior
+                    </a>
+                    <a href="../leccion-1-2/index.html" class="btn nav-btn btn-primary">
+                        Siguiente Lección →
                     </a>
                 </div>
             </div>
-            
-            <!-- Visor de PDF -->
-            <iframe 
-                src="S01_CampoE.pdf" 
-                class="pdf-viewer" 
-                id="pdfViewer"
-                title="Presentación de la lección">
-                <p>Tu navegador no soporta PDFs. 
-                   <a href="S01_CampoE.pdf" target="_blank">Haz clic aquí para descargar el PDF</a>
-                </p>
-            </iframe>
-        </div>
-
-        <!-- Navegación entre lecciones -->
-        <div class="navigation">
-            <a href="../leccion-1-0/index.html" class="btn nav-btn btn-primary">
-                ← Lección Anterior
-            </a>
-            <a href="../leccion-1-2/index.html" class="btn nav-btn btn-primary">
-                Siguiente Lección →
-            </a>
         </div>
     </div>
 
     <script>
+        // Función para toggle del sidebar
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.getElementById('sidebarToggle');
+    
+    if (window.innerWidth <= 768) {
+        // Comportamiento móvil
+        sidebar.classList.toggle('show');
+        if (sidebar.classList.contains('show')) {
+            toggle.innerHTML = '✕';
+        } else {
+            toggle.innerHTML = '☰';
+        }
+    } else {
+        // Comportamiento desktop
+        sidebar.classList.toggle('collapsed');
+        if (sidebar.classList.contains('collapsed')) {
+            toggle.innerHTML = '☰';
+        } else {
+            toggle.innerHTML = '✕';
+        }
+    }
+}
+
         function toggleFullscreen() {
             const pdfViewer = document.getElementById('pdfViewer');
             
@@ -269,7 +394,7 @@
         // Marcar lección como vista (para futuro seguimiento de progreso)
         localStorage.setItem('leccion-1-1-viewed', 'true');
         
-        console.log('Lección 1.1 cargada correctamente');
+        console.log('Lección 1.1 con sidebar cargada correctamente');
     </script>
 </body>
 </html>

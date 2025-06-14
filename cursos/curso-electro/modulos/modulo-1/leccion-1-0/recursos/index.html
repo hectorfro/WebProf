@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Estudio - Lección 1.0: Introducción al Curso</title>
+    <link rel="stylesheet" href="../../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../../css/lesson-sidebar.css">
+    <style>
+        /* Estilos específicos para la página de recursos */
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .resources-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .resource-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .resource-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resource-item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .resource-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .resource-item-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-meta {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .coming-soon {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .available {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .resource-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .resource-section:nth-child(2) { animation-delay: 0.1s; }
+        .resource-section:nth-child(3) { animation-delay: 0.2s; }
+        .resource-section:nth-child(4) { animation-delay: 0.3s; }
+        .resource-section:nth-child(5) { animation-delay: 0.4s; }
+        .resource-section:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header de la página -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../../../../../index.html">🏠 Inicio</a> › 
+                <a href="../../../../index.html">⚡ Física II</a> › 
+                <a href="../../../index.html">📚 Módulo I</a> › 
+                <a href="../../index.html">📖 Lección 1.0</a> › 
+                📖 Recursos
+            </div>
+            <h1 class="page-title">📖 Recursos de Estudio</h1>
+            <p class="page-subtitle">
+                Lección 1.0: Introducción al Curso
+            </p>
+            <p style="color: #999; font-size: 0.9rem; margin-top: 15px;">
+                Materiales complementarios para la introducción al electromagnetismo
+            </p>
+        </div>
+
+        <!-- Contenedor principal de recursos -->
+        <div class="resources-container">
+            
+            <!-- Sección: Notebooks de Colab -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📓</div>
+                    <div>
+                        <h2 class="section-title">Notebooks de Google Colab</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Cuadernos interactivos introductorios al electromagnetismo 
+                    y herramientas de Python para el análisis de física.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">📝</div>
+                    <p>Notebooks introductorios al electromagnetismo en desarrollo</p>
+                </div>
+            </div>
+
+            <!-- Sección: Ejercicios Propuestos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div>
+                        <h2 class="section-title">Ejercicios Propuestos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Ejercicios introductorios y de repaso de conceptos fundamentales 
+                    para preparar el estudio del electromagnetismo.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">🎯</div>
+                    <p>Ejercicios introductorios próximamente</p>
+                </div>
+            </div>
+
+            <!-- Sección: Exámenes Anteriores -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Exámenes Anteriores</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Preguntas de exámenes anteriores relacionadas con conceptos 
+                    introductorios y panorama general del electromagnetismo.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">📊</div>
+                    <p>Preguntas introductorias en preparación</p>
+                </div>
+            </div>
+
+            <!-- Sección: Videos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <div>
+                        <h2 class="section-title">Videos Educativos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Videos introductorios al curso, panorama histórico del electromagnetismo 
+                    y motivación para el estudio de la materia.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">🎬</div>
+                    <p>Videos introductorios próximamente</p>
+                </div>
+            </div>
+
+            <!-- Sección: Bibliografía -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Bibliografía Específica</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Referencias bibliográficas introductorias y capítulos recomendados 
+                    para comenzar el estudio del electromagnetismo.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">📖</div>
+                    <p>Referencias introductorias en desarrollo</p>
+                </div>
+            </div>
+
+            <!-- Sección: Materiales Varios -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🗂️</div>
+                    <div>
+                        <h2 class="section-title">Materiales Introductorios</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Syllabus del curso, cronograma de actividades y herramientas 
+                    necesarias para el estudio del electromagnetismo.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">🔧</div>
+                    <p>Materiales del curso próximamente</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Animación de entrada suave para las secciones
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📖 Página de Recursos - Lección 1.0: Introducción al Curso cargada');
+            
+            // Agregar efectos de hover mejorados
+            const resourceItems = document.querySelectorAll('.resource-item');
+            
+            resourceItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+                
+                // Agregar funcionalidad de click (placeholder)
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.resource-item-title').textContent;
+                    const status = this.querySelector('.coming-soon, .available');
+                    
+                    if (status && status.classList.contains('coming-soon')) {
+                        alert(`📋 "${title}"\n\n🔧 Este recurso estará disponible próximamente.\n\nTe notificaremos cuando esté listo para descargar.`);
+                    } else {
+                        alert(`📋 "${title}"\n\n✅ Recurso disponible.\n\n🔧 Funcionalidad de descarga en desarrollo...`);
+                    }
+                });
+            });
+            
+            // Scroll suave para navegación
+            const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
+            breadcrumbLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Permitir navegación normal a todas las páginas
+                    return;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
