@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lección 4.2 - Ley de Ampère</title>
-    <link rel="stylesheet" href="../../../../assets/css/global-styles.css">
-    <link rel="stylesheet" href="../../css/electro-styles.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../css/electro-styles.css">
+    <link rel="stylesheet" href="../../../css/lesson-sidebar.css">
     <style>
         * {
             margin: 0;
@@ -181,25 +182,113 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header de la lección -->
-        <div class="header">
-            <div class="breadcrumb">
-                <a href="../../index.html">Curso Electromagnetismo</a> &gt; 
-                <a href="../index.html">Módulo IV</a> &gt; 
-                <span>Lección 4.2</span>
+    <div class="lesson-layout">
+        <!-- Sidebar de navegación -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="course-info">
+                    <h3>Física II</h3>
+                    <h2>⚡ Electromagnetismo</h2>
+                    <div class="module-title">🧲 Módulo IV - Magnetismo</div>
+                </div>
             </div>
             
-            <h1 class="lesson-title">Ley de Ampère</h1>
-            <p class="lesson-subtitle">Bienvenida </p>
+            <div class="sidebar-content">
+                <ul class="lessons-nav">
+                    <li class="lesson-nav-item">
+                        <a href="../leccion-4-1/index.html" class="lesson-nav-link">
+                            <div class="lesson-icon">4.1</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Ley de Biot-Savart</div>
+                                <div class="lesson-meta">
+                                    <span>📅 4h</span>
+                                    <span>🎯 Teórica</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                    <li class="lesson-nav-item">
+                        <a href="index.html" class="lesson-nav-link active">
+                            <div class="lesson-icon">4.2</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Ley de Ampère</div>
+                                <div class="lesson-meta">
+                                    <span>📅 4h</span>
+                                    <span>🎯 Teórica</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                    <li class="lesson-nav-item">
+                        <a href="../leccion-4-3/index.html" class="lesson-nav-link">
+                            <div class="lesson-icon">4.3</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Ley de Faraday e Inductancia</div>
+                                <div class="lesson-meta">
+                                    <span>📅 4h</span>
+                                    <span>🎯 Teórica</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                    <li class="lesson-nav-item">
+                        <a href="recursos/index.html" class="lesson-nav-link">
+                            <div class="lesson-icon">📖</div>
+                            <div class="lesson-details">
+                                <div class="lesson-name">Recursos</div>
+                                <div class="lesson-meta">
+                                    <span>📚 Materiales</span>
+                                    <span>🔗 Enlaces</span>
+                                </div>
+                            </div>
+                            <div class="lesson-status-icon">✅</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="navigation-controls">
+                <a href="../leccion-4-1/index.html" class="nav-control-btn">
+                    ← Anterior
+                </a>
+                <a href="../leccion-4-3/index.html" class="nav-control-btn">
+                    Siguiente →
+                </a>
+            </div>
+        </div>
+
+        <!-- Botón para mostrar/ocultar sidebar -->
+        <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+            ☰
+        </button>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="container">
+        <!-- Header de la lección -->
+        <div class="header">
+                    <div class="breadcrumb">
+                        <a href="../../../index.html">🏠 Inicio</a> › 
+                        <a href="../../../index.html">⚡ Física II</a> › 
+                        <a href="../index.html">🧲 Módulo IV</a> › 
+                        <a href="index.html">📖 Lección 4.2</a> › 
+                        📖 Ley de Ampère
+                    </div>
+                    
+                    <h1 class="lesson-title">Ley de Ampère</h1>
+                    <p class="lesson-subtitle">Campo magnético y circulación magnética</p>
+            
             
             <div class="lesson-info">
                 <div class="info-item">
                     <span>📅</span> Duración: 4 horas
                 </div>
-                <div class="info-item">
-                    <span>📚</span> Tipo: Conceptos Básicos
-                </div>
+                        <div class="info-item">
+                            <span>📚</span> Tipo: Avanzado
+                        </div>
                 <div class="info-item">
                     <span>🎯</span> Modalidad: Teórica
                 </div>
@@ -233,17 +322,44 @@
         </div>
 
         <!-- Navegación entre lecciones -->
-        <div class="navigation">
-            <a href="../leccion-4-1/index.html" class="btn nav-btn btn-primary">
-                ← Lección Anterior
-            </a>
-            <a href="../leccion-4-3/index.html" class="btn nav-btn btn-primary">
-                Siguiente Lección →
-            </a>
+                <!-- Navegación entre lecciones -->
+                <div class="navigation">
+                    <a href="../leccion-4-1/index.html" class="btn nav-btn btn-secondary">
+                        ← Lección Anterior
+                    </a>
+                    <a href="../leccion-4-3/index.html" class="btn nav-btn btn-secondary">
+                        Siguiente Lección →
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // Función para toggle del sidebar
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.getElementById('sidebarToggle');
+    
+    if (window.innerWidth <= 768) {
+        // Comportamiento móvil
+        sidebar.classList.toggle('show');
+        if (sidebar.classList.contains('show')) {
+            toggle.innerHTML = '✕';
+        } else {
+            toggle.innerHTML = '☰';
+        }
+    } else {
+        // Comportamiento desktop
+        sidebar.classList.toggle('collapsed');
+        if (sidebar.classList.contains('collapsed')) {
+            toggle.innerHTML = '☰';
+        } else {
+            toggle.innerHTML = '✕';
+        }
+    }
+}
+
         function toggleFullscreen() {
             const pdfViewer = document.getElementById('pdfViewer');
             
@@ -269,7 +385,7 @@
         // Marcar lección como vista (para futuro seguimiento de progreso)
         localStorage.setItem('leccion-4-2-viewed', 'true');
         
-        console.log('Lección 4.2 cargada correctamente');
+        console.log('Lección 4.2 con sidebar cargada correctamente');
     </script>
 </body>
 </html>

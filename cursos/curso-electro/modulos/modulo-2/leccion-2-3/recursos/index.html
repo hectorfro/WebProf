@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Estudio - Lección 2.3: Capacitancia y Capacitores</title>
+    <link rel="stylesheet" href="../../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../../css/lesson-sidebar.css">
+    <style>
+        /* Estilos específicos para la página de recursos */
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .resources-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .resource-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .resource-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resource-item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .resource-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .resource-item-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-meta {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .coming-soon {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .available {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .resource-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .resource-section:nth-child(2) { animation-delay: 0.1s; }
+        .resource-section:nth-child(3) { animation-delay: 0.2s; }
+        .resource-section:nth-child(4) { animation-delay: 0.3s; }
+        .resource-section:nth-child(5) { animation-delay: 0.4s; }
+        .resource-section:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header de la página -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../../../../../index.html">🏠 Inicio</a> › 
+                <a href="../../../../index.html">⚡ Física II</a> › 
+                <a href="../../index.html">💫 Módulo II</a> › 
+                <a href="../index.html">📖 Lección 2.3</a> › 
+                📖 Recursos
+            </div>
+            <h1 class="page-title">📖 Recursos de Estudio</h1>
+            <p class="page-subtitle">
+                Lección 2.3: Capacitancia y Capacitores
+            </p>
+            <p style="color: #999; font-size: 0.9rem; margin-top: 15px;">
+                Materiales complementarios para el estudio de capacitancia y almacenamiento de energía
+            </p>
+        </div>
+
+        <!-- Contenedor principal de recursos -->
+        <div class="resources-container">
+            
+            <!-- Sección: Notebooks de Colab -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📓</div>
+                    <div>
+                        <h2 class="section-title">Notebooks de Google Colab</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Cuadernos interactivos para calcular capacitancia, analizar circuitos con capacitores 
+                    y estudiar almacenamiento de energía eléctrica.
+                </p>
+                <div class="resource-grid">
+                    <a href="https://colab.research.google.com/drive/capacitancia-conceptos-basicos" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">⚡</div>
+                            <div class="resource-item-title">Conceptos de Capacitancia</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Introducción a la capacitancia: definición, cálculo fundamental 
+                            y relación con geometría y dieléctricos.
+                        </div>
+                        <div class="resource-item-meta">Notebook conceptual • Python + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/capacitores-geometrias-especiales" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📐</div>
+                            <div class="resource-item-title">Capacitores Geométricos</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Cálculo de capacitancia para diferentes geometrías: placas paralelas, 
+                            esféricas, cilíndricas y configuraciones especiales.
+                        </div>
+                        <div class="resource-item-meta">Notebook calculativo • SymPy + NumPy</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/circuitos-capacitores" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔌</div>
+                            <div class="resource-item-title">Circuitos con Capacitores</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Análisis de circuitos con capacitores: serie, paralelo, mixtos 
+                            y capacitancia equivalente en redes complejas.
+                        </div>
+                        <div class="resource-item-meta">Notebook aplicativo • SciPy + Plotly</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/energia-dielectricos" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔋</div>
+                            <div class="resource-item-title">Energía y Dieléctricos</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Energía almacenada en capacitores, efectos de dieléctricos 
+                            y constante dieléctrica en diferentes materiales.
+                        </div>
+                        <div class="resource-item-meta">Notebook avanzado • Pandas + Matplotlib</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sección: Ejercicios Propuestos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div>
+                        <h2 class="section-title">Ejercicios Propuestos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Problemas específicos sobre cálculo de capacitancia, análisis de circuitos 
+                    y aplicaciones de capacitores en sistemas eléctricos.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Capacitancia Básica</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios fundamentales sobre cálculo de capacitancia 
+                            para geometrías simples y conceptos básicos.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-capacitancia-basica.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-capacitancia-basica.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📑</div>
+                            <div class="resource-item-title">Circuitos con Capacitores</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Problemas de análisis de circuitos: serie, paralelo, 
+                            capacitancia equivalente y distribución de carga.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-circuitos-capacitores.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-circuitos-capacitores.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Energía y Dieléctricos</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios avanzados sobre energía almacenada, efectos de dieléctricos 
+                            y aplicaciones prácticas en tecnología.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-energia-dielectricos.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-energia-dielectricos.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Exámenes Anteriores -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Exámenes Anteriores</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Preguntas de exámenes anteriores enfocadas en capacitancia, 
+                    análisis de circuitos con capacitores y aplicaciones prácticas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Parcial Capacitancia 2023-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen comprensivo sobre capacitancia: cálculo, geometrías especiales 
+                            y análisis de circuitos con capacitores.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/parcial-capacitancia-2023-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/parcial-capacitancia-2023-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Quiz Circuitos Capacitivos 2022-II</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Evaluación sobre análisis de circuitos con capacitores: 
+                            serie, paralelo y configuraciones mixtas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/quiz-circuitos-capacitivos-2022-2.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/quiz-circuitos-capacitivos-2022-2.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Examen Dieléctricos 2022-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Problemas sobre efectos de dieléctricos en capacitores, 
+                            constante dieléctrica y energía almacenada.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/examen-dielectricos-2022-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/examen-dielectricos-2022-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Evaluación Energía Capacitiva 2021-II</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen sobre energía almacenada en capacitores, 
+                            densidad de energía y aplicaciones tecnológicas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/evaluacion-energia-capacitiva-2021-2.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/evaluacion-energia-capacitiva-2021-2.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Videos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <div>
+                        <h2 class="section-title">Videos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Videotutoriales sobre capacitancia, análisis de circuitos con capacitores 
+                    y aplicaciones prácticas en tecnología moderna.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Introducción a la Capacitancia</div>
+                            <div class="available">18 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Conceptos fundamentales de capacitancia: definición, 
+                            cálculo básico y dependencia de la geometría.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=introduccion-capacitancia" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Capacitores en Serie y Paralelo</div>
+                            <div class="available">25 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Análisis detallado de circuitos con capacitores: 
+                            conexiones serie, paralelo y capacitancia equivalente.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=capacitores-serie-paralelo" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Energía en Capacitores</div>
+                            <div class="available">22 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Energía almacenada en capacitores: cálculo, densidad de energía 
+                            y aplicaciones en sistemas de almacenamiento.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=energia-capacitores" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Dieléctricos y Aplicaciones</div>
+                            <div class="available">28 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Efectos de dieléctricos en capacitores: constante dieléctrica, 
+                            rigidez dieléctrica y aplicaciones tecnológicas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=dielectricos-aplicaciones" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Bibliografía -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Bibliografía Específica</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Referencias bibliográficas específicas sobre capacitancia, 
+                    dieléctricos y aplicaciones de capacitores.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📘</div>
+                            <div class="resource-item-title">Griffiths - Electrodynamics</div>
+                            <div class="available">Cap. 2.5</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Introduction to Electrodynamics" - David J. Griffiths. 
+                            Sección 2.5: Conductores y capacitancia.
+                        </div>
+                        <div class="resource-item-meta">Texto principal • Sección 2.5</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📗</div>
+                            <div class="resource-item-title">Halliday, Resnick & Krane</div>
+                            <div class="available">Cap. 26-27</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Física" - Halliday, Resnick & Krane. 
+                            Capítulos 26-27: Capacitancia, dieléctricos y energía.
+                        </div>
+                        <div class="resource-item-meta">Texto complementario • 5ta Edición</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📙</div>
+                            <div class="resource-item-title">Serway & Jewett - Física</div>
+                            <div class="available">Cap. 26</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Física para Ciencias e Ingeniería" - Serway & Jewett. 
+                            Capítulo 26: Capacitancia y materiales dieléctricos.
+                        </div>
+                        <div class="resource-item-meta">Texto de apoyo • 9na Edición</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📕</div>
+                            <div class="resource-item-title">Purcell - Electricity and Magnetism</div>
+                            <div class="available">Cap. 3</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Electricity and Magnetism" - Edward M. Purcell. 
+                            Capítulo 3: Campos eléctricos alrededor de conductores.
+                        </div>
+                        <div class="resource-item-meta">Berkeley Physics • Cap. 3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Materiales Varios -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🗂️</div>
+                    <div>
+                        <h2 class="section-title">Herramientas y Aplicaciones</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Simuladores, calculadoras especializadas y herramientas para analizar 
+                    circuitos con capacitores y aplicaciones tecnológicas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🧮</div>
+                            <div class="resource-item-title">Calculadora de Capacitancia</div>
+                            <div class="available">Online</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Calculadora especializada para capacitancia: diferentes geometrías, 
+                            dieléctricos y configuraciones de circuitos.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://www.omnicalculator.com/physics/capacitance" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Calcular
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📊</div>
+                            <div class="resource-item-title">Simulador de Circuitos - PhET</div>
+                            <div class="available">Web</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Simulación interactiva de circuitos con capacitores: 
+                            análisis de carga, descarga y comportamiento dinámico.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://phet.colorado.edu/es/simulation/capacitor-lab" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Simular
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📐</div>
+                            <div class="resource-item-title">Tabla de Capacitancias</div>
+                            <div class="available">PDF</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Compilación de fórmulas de capacitancia para diferentes 
+                            geometrías y configuraciones de conductores.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/tabla-capacitancias.pdf" target="_blank" class="btn btn-primary">
+                                <span>📄</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔬</div>
+                            <div class="resource-item-title">Simulador LTSpice</div>
+                            <div class="available">Software</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Software profesional para simulación de circuitos con capacitores: 
+                            análisis transitorio y respuesta en frecuencia.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Animación de entrada suave para las secciones
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📖 Página de Recursos - Lección 2.3: Capacitancia y Capacitores cargada');
+            
+            // Agregar efectos de hover mejorados
+            const resourceItems = document.querySelectorAll('.resource-item');
+            
+            resourceItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+                
+                // Agregar funcionalidad de click (placeholder)
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.resource-item-title').textContent;
+                    const status = this.querySelector('.coming-soon, .available');
+                    
+                    if (status && status.classList.contains('coming-soon')) {
+                        alert(`📋 "${title}"\n\n🔧 Este recurso estará disponible próximamente.\n\nTe notificaremos cuando esté listo para descargar.`);
+                    } else {
+                        alert(`📋 "${title}"\n\n✅ Recurso disponible.\n\n🔧 Funcionalidad de descarga en desarrollo...`);
+                    }
+                });
+            });
+            
+            // Scroll suave para navegación
+            const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
+            breadcrumbLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Permitir navegación normal a todas las páginas
+                    return;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

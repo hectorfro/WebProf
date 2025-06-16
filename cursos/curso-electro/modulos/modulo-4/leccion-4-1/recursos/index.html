@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Estudio - Lección 4.1: Ley de Biot-Savart</title>
+    <link rel="stylesheet" href="../../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../../css/lesson-sidebar.css">
+    <style>
+        /* Estilos específicos para la página de recursos */
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .resources-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .resource-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .resource-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resource-item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .resource-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .resource-item-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-meta {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .coming-soon {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .available {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .resource-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .resource-section:nth-child(2) { animation-delay: 0.1s; }
+        .resource-section:nth-child(3) { animation-delay: 0.2s; }
+        .resource-section:nth-child(4) { animation-delay: 0.3s; }
+        .resource-section:nth-child(5) { animation-delay: 0.4s; }
+        .resource-section:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header de la página -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../../../../../index.html">🏠 Inicio</a> › 
+                <a href="../../../../index.html">⚡ Física II</a> › 
+                <a href="../../index.html">🧲 Módulo IV</a> › 
+                <a href="../index.html">📖 Lección 4.1</a> › 
+                📖 Recursos
+            </div>
+            <h1 class="page-title">📖 Recursos de Estudio</h1>
+            <p class="page-subtitle">
+                Lección 4.1: Ley de Biot-Savart
+            </p>
+            <p style="color: #999; font-size: 0.9rem; margin-top: 15px;">
+                Materiales complementarios para el estudio de la ley de Biot-Savart y campo magnético
+            </p>
+        </div>
+
+        <!-- Contenedor principal de recursos -->
+        <div class="resources-container">
+            
+            <!-- Sección: Notebooks de Colab -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📓</div>
+                    <div>
+                        <h2 class="section-title">Notebooks de Google Colab</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Cuadernos interactivos para estudiar la ley de Biot-Savart, 
+                    cálculo de campo magnético y aplicaciones en configuraciones geométricas.
+                </p>
+                <div class="resource-grid">
+                    <a href="https://colab.research.google.com/drive/ley-biot-savart-conceptos" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🧮</div>
+                            <div class="resource-item-title">Ley de Biot-Savart Conceptos</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Introducción a la ley de Biot-Savart: formulación matemática, 
+                            interpretación física y aplicaciones fundamentales.
+                        </div>
+                        <div class="resource-item-meta">Notebook conceptual • Python + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/campo-corriente-rectilineo" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📏</div>
+                            <div class="resource-item-title">Campo de Corriente Rectilínea</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Cálculo del campo magnético producido por corrientes rectilíneas: 
+                            alambre infinito, finito y aplicaciones.
+                        </div>
+                        <div class="resource-item-meta">Notebook calculativo • SymPy + NumPy</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/campo-espira-circular" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">⭕</div>
+                            <div class="resource-item-title">Campo de Espira Circular</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Análisis del campo magnético en el eje de una espira circular: 
+                            centro, puntos del eje y campo lejano.
+                        </div>
+                        <div class="resource-item-meta">Notebook aplicativo • SciPy + Plotly</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/aplicaciones-biot-savart" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔧</div>
+                            <div class="resource-item-title">Aplicaciones Biot-Savart</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Aplicaciones avanzadas: bobinas Helmholtz, solenoides finitos 
+                            y configuraciones geométricas complejas.
+                        </div>
+                        <div class="resource-item-meta">Notebook avanzado • Pandas + Matplotlib</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sección: Ejercicios Propuestos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div>
+                        <h2 class="section-title">Ejercicios Propuestos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Problemas específicos sobre la ley de Biot-Savart, 
+                    cálculo de campo magnético en diferentes configuraciones geométricas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Ley de Biot-Savart Básica</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios introductorios sobre aplicación de la ley de Biot-Savart 
+                            en configuraciones simples.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-biot-savart-basica.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-biot-savart-basica.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📑</div>
+                            <div class="resource-item-title">Campo de Corrientes Rectilíneas</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Problemas sobre campo magnético producido por corrientes rectilíneas: 
+                            alambres infinitos y finitos.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-corrientes-rectilineas.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-corrientes-rectilineas.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Campo de Espiras y Bobinas</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios sobre campo magnético en espiras circulares, 
+                            bobinas y configuraciones de múltiples espiras.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-espiras-bobinas.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-espiras-bobinas.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Exámenes Anteriores -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Exámenes Anteriores</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Preguntas de exámenes anteriores enfocadas en la ley de Biot-Savart, 
+                    cálculo de campo magnético y aplicaciones.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Parcial Biot-Savart 2023-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen comprensivo sobre ley de Biot-Savart: aplicaciones 
+                            en configuraciones rectilíneas y circulares.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/parcial-biot-savart-2023-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/parcial-biot-savart-2023-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Quiz Campo Magnético 2022-II</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Evaluación sobre cálculo de campo magnético usando Biot-Savart: 
+                            problemas de corrientes y geometrías.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/quiz-campo-magnetico-2022-2.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/quiz-campo-magnetico-2022-2.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Examen Espiras Circulares 2022-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Problemas sobre campo magnético de espiras circulares: 
+                            cálculos en el eje y aplicaciones prácticas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/examen-espiras-circulares-2022-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/examen-espiras-circulares-2022-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Evaluación Bobinas 2021-II</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen sobre configuraciones de bobinas: campo magnético 
+                            en bobinas Helmholtz y solenoides.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/evaluacion-bobinas-2021-2.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/evaluacion-bobinas-2021-2.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Videos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <div>
+                        <h2 class="section-title">Videos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Videotutoriales sobre la ley de Biot-Savart, 
+                    cálculo de campo magnético y aplicaciones prácticas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Ley de Biot-Savart Fundamentos</div>
+                            <div class="available">32 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Introducción completa a la ley de Biot-Savart: 
+                            derivación, interpretación y primeras aplicaciones.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=biot-savart-fundamentos" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Campo de Alambre Rectilíneo</div>
+                            <div class="available">28 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Cálculo detallado del campo magnético de alambre rectilíneo: 
+                            infinito, semi-infinito y segmentos finitos.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=campo-alambre-rectilineo" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Campo de Espira Circular</div>
+                            <div class="available">30 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Análisis del campo magnético en espiras circulares: 
+                            centro, eje y límites de campo lejano.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=campo-espira-circular" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Aplicaciones Avanzadas</div>
+                            <div class="available">35 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Aplicaciones complejas de Biot-Savart: bobinas Helmholtz, 
+                            solenoides y configuraciones especiales.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=aplicaciones-avanzadas" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Bibliografía -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Bibliografía Específica</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Referencias bibliográficas específicas sobre la ley de Biot-Savart, 
+                    fuentes de campo magnético y aplicaciones.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📘</div>
+                            <div class="resource-item-title">Halliday, Resnick & Krane</div>
+                            <div class="available">Cap. 31</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Física" - Halliday, Resnick & Krane. 
+                            Capítulo 31: La ley de Biot-Savart.
+                        </div>
+                        <div class="resource-item-meta">Texto principal • 5ta Edición</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📗</div>
+                            <div class="resource-item-title">Serway & Jewett - Física</div>
+                            <div class="available">Cap. 30</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Física para Ciencias e Ingeniería" - Serway & Jewett. 
+                            Capítulo 30: Fuentes de campo magnético.
+                        </div>
+                        <div class="resource-item-meta">Texto complementario • 9na Edición</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📙</div>
+                            <div class="resource-item-title">Tipler & Mosca - Física</div>
+                            <div class="available">Cap. 27</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Física para la Ciencia y la Tecnología" - Tipler & Mosca. 
+                            Capítulo 27: Fuentes de campo magnético.
+                        </div>
+                        <div class="resource-item-meta">Texto de apoyo • 6ta Edición</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📕</div>
+                            <div class="resource-item-title">Purcell - Electricity and Magnetism</div>
+                            <div class="available">Cap. 6</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Electricity and Magnetism" - Edward M. Purcell. 
+                            Capítulo 6: El campo magnético de las corrientes.
+                        </div>
+                        <div class="resource-item-meta">Berkeley Physics • Cap. 6</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Materiales Varios -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🗂️</div>
+                    <div>
+                        <h2 class="section-title">Herramientas y Simuladores</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Simuladores, calculadoras y herramientas especializadas para aplicar 
+                    la ley de Biot-Savart y visualizar campos magnéticos.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🧮</div>
+                            <div class="resource-item-title">Calculadora Biot-Savart</div>
+                            <div class="available">Online</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Calculadora especializada para aplicar la ley de Biot-Savart: 
+                            diferentes geometrías y configuraciones.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://www.omnicalculator.com/physics/biot-savart-law" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Calcular
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📊</div>
+                            <div class="resource-item-title">PhET - Laboratorio EM</div>
+                            <div class="available">Simulador</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Simulación interactiva de fuentes de campo magnético: 
+                            corrientes, bobinas y visualización de campo.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://phet.colorado.edu/es/simulation/faradays-electromagnetic-lab" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Simular
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📐</div>
+                            <div class="resource-item-title">Visualizador Campo 3D</div>
+                            <div class="available">Web</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Herramienta para visualizar campos magnéticos tridimensionales 
+                            producidos por diferentes distribuciones de corriente.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://www.falstad.com/vector3dm/" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Visualizar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔬</div>
+                            <div class="resource-item-title">Simulador Campos Magnéticos</div>
+                            <div class="available">Software</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Simulador avanzado para calcular y visualizar campos magnéticos 
+                            usando la ley de Biot-Savart.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://www.glowscript.org/" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Simular
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Animación de entrada suave para las secciones
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📖 Página de Recursos - Lección 4.1: Ley de Biot-Savart cargada');
+            
+            // Agregar efectos de hover mejorados
+            const resourceItems = document.querySelectorAll('.resource-item');
+            
+            resourceItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+                
+                // Agregar funcionalidad de click (placeholder)
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.resource-item-title').textContent;
+                    const status = this.querySelector('.coming-soon, .available');
+                    
+                    if (status && status.classList.contains('coming-soon')) {
+                        alert(`📋 "${title}"\n\n🔧 Este recurso estará disponible próximamente.\n\nTe notificaremos cuando esté listo para descargar.`);
+                    } else {
+                        alert(`📋 "${title}"\n\n✅ Recurso disponible.\n\n🔧 Funcionalidad de descarga en desarrollo...`);
+                    }
+                });
+            });
+            
+            // Scroll suave para navegación
+            const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
+            breadcrumbLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Permitir navegación normal a todas las páginas
+                    return;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
