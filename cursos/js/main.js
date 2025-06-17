@@ -136,7 +136,7 @@ const courseData = {
     },
     'curso-ondas': {
         id: 'curso-ondas',
-        title: "🌊 Física III - Ondas y Óptica",
+        title: "🌊 Física III - Ondas y Física Moderna",
         path: 'cursos/curso-ondas/',
         modules: {
             'modulo-1': {
@@ -145,97 +145,116 @@ const courseData = {
                 description: "Fundamentos del movimiento ondulatorio, ondas mecánicas y sus propiedades.",
                 lessons: [
                     { 
+                        id: 'leccion-1-0',
+                        name: "Lección 1.0: Introducción al Curso", 
+                        status: "uploaded", 
+                        presentation: "S00_Intro.pdf",
+                        path: "modulos/modulo-1/leccion-1-0/"
+                    },
+                    { 
                         id: 'leccion-1-1',
-                        name: "Lección 1.1: Introducción a las Ondas", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 1.1: Movimiento armónico simple", 
+                        status: "uploaded", 
+                        presentation: "S01_MAS.pdf",
+                        path: "modulos/modulo-1/leccion-1-1/"
                     },
                     { 
                         id: 'leccion-1-2',
-                        name: "Lección 1.2: Ondas Sinusoidales", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 1.2: Movimiento oscilatorio amortiguado", 
+                        status: "uploaded", 
+                        presentation:  "S02_MOA.pdf",
+                        path: "modulos/modulo-1/leccion-1-2/"                       
                     },
                     { 
                         id: 'leccion-1-3',
-                        name: "Lección 1.3: Velocidad de Ondas", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 1.3: Movimiento oscilatorio forzado", 
+                        status: "uploaded", 
+                        presentation: "S03_MOF.pdf", 
+                        path: "modulos/modulo-1/leccion-1-3/"
                     }
                 ]
             },
             'modulo-2': {
                 id: 'modulo-2',
-                name: "Módulo II - Superposición e Interferencia",
-                description: "Principio de superposición, interferencia constructiva y destructiva.",
+                name: "Módulo II - Ondas mecánicas",
+                description: "Función de onda, ecuación de onda, velocidad de propagación y ondas estacionarias.",
                 lessons: [
                     { 
                         id: 'leccion-2-1',
-                        name: "Lección 2.1: Principio de Superposición", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 2.1: Ecuación de onda", 
+                        status: "uploaded", 
+                        presentation: "S04_Ondas.pdf", 
+                        path: "modulos/modulo-2/leccion-2-1/"
                     },
                     { 
                         id: 'leccion-2-2',
-                        name: "Lección 2.2: Interferencia de Ondas", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 2.2: Ondas en cuerdas y cuerdas vibrantes", 
+                        status: "uploaded", 
+                        presentation: "S05_OndasCuerdas.pdf", 
+                        path: "modulos/modulo-2/leccion-2-2/"
                     },
                     { 
                         id: 'leccion-2-3',
-                        name: "Lección 2.3: Experimento de Young", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 2.3: Ondas de sonido", 
+                        status: "uploaded", 
+                        presentation: "S06_OndasSonido.pdf", 
+                        path: "modulos/modulo-2/leccion-2-3/" 
                     }
                 ]
             },
             'modulo-3': {
                 id: 'modulo-3',
-                name: "Módulo III - Difracción y Polarización",
-                description: "Fenómenos de difracción, patrones de difracción y polarización de la luz.",
+                name: "Módulo III - Ondas electromagnéticas",
+                description: "Ecuaciones de Maxwell, ondas electromagnéticas y espectro electromagnético.",
                 lessons: [
                     { 
                         id: 'leccion-3-1',
-                        name: "Lección 3.1: Difracción por Abertura Simple", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 3.1: Ecuación de ondas Electromagnéticas, vector de Poynting", 
+                        status: "uploaded", 
+                        presentation: "S07_OndasElectro.pdf", 
+                        path: "modulos/modulo-3/leccion-3-1/" 
                     },
                     { 
                         id: 'leccion-3-2',
-                        name: "Lección 3.2: Difracción por Rejilla", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 3.2: Reflexión y Refracción de Ondas Electromagnéticas", 
+                        status: "uploaded", 
+                        presentation: "S08_OndasElectro2.pdf", 
+                        path: "modulos/modulo-3/leccion-3-2/" 
                     },
                     { 
                         id: 'leccion-3-3',
-                        name: "Lección 3.3: Polarización de la Luz", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 3.3: Polarización, interferencia y difracción", 
+                        status: "uploaded", 
+                        presentation: "S09_OndasElectro3.pdf", 
+                        path: "modulos/modulo-3/leccion-3-3/" 
                     }
                 ]
             },
             'modulo-4': {
                 id: 'modulo-4',
-                name: "Módulo IV - Óptica Geométrica",
-                description: "Reflexión, refracción, formación de imágenes y instrumentos ópticos.",
+                name: "Módulo IV - Introducción a la Física Moderna",
+                description: "Relatividad, los tres grandes experimentos y principios de la mecánica cuántica.",
                 lessons: [
                     { 
                         id: 'leccion-4-1',
-                        name: "Lección 4.1: Reflexión y Refracción", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 4.1: Relatividad Especial", 
+                        status: "uploaded", 
+                        presentation: "S10_FMRelati.pdf", 
+                        path: "modulos/modulo-4/leccion-4-1/"  
                     },
                     { 
                         id: 'leccion-4-2',
-                        name: "Lección 4.2: Espejos y Lentes", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 4.2: Radiacion del cuerpo negro, el efecto fotoeléctrico y efecto Compton", 
+                        status: "uploaded", 
+                        presentation: "S11_FMExperi.pdf", 
+                        path: "modulos/modulo-4/leccion-4-2/" 
                     },
                     { 
                         id: 'leccion-4-3',
-                        name: "Lección 4.3: Instrumentos Ópticos", 
-                        status: "empty", 
-                        presentation: null 
+                        name: "Lección 4.3: Ondas de materia de De Broglie, dualidad onda-partícula", 
+                        status: "uploaded", 
+                        presentation: "S12_FMExperi2.pdf", 
+                        path: "modulos/modulo-4/leccion-4-3/" 
                     }
                 ]
             }
@@ -843,7 +862,7 @@ const APP_CONFIG = {
     version: '2.0.0',
     name: 'La Web del Profe',
     author: 'Prof. Héctor Hernández',
-    university: 'Universidad XYZ',
+    university: 'Universidad Industrial de Santander',
     year: 2025,
     supportedFormats: ['.pdf', '.pptx', '.ppt'],
     maxFileSize: 50 * 1024 * 1024, // 50MB para presentaciones

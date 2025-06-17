@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Estudio - Lección 1.0: Introducción a Ondas y Óptica</title>
+    <link rel="stylesheet" href="../../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../../css/lesson-sidebar.css">
+    <style>
+        /* Estilos específicos para la página de recursos */
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .resources-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .resource-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .resource-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resource-item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .resource-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .resource-item-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-meta {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .coming-soon {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .available {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .resource-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .resource-section:nth-child(2) { animation-delay: 0.1s; }
+        .resource-section:nth-child(3) { animation-delay: 0.2s; }
+        .resource-section:nth-child(4) { animation-delay: 0.3s; }
+        .resource-section:nth-child(5) { animation-delay: 0.4s; }
+        .resource-section:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header de la página -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../../../../../index.html">🏠 Inicio</a> › 
+                <a href="../../../../index.html">🌊 Ondas y Física Moderna</a> › 
+                <a href="../../index.html">📚 Módulo I</a> › 
+                <a href="../index.html">📖 Lección 1.0</a> › 
+                📖 Recursos
+            </div>
+            <h1 class="page-title">📖 Recursos de Estudio</h1>
+            <p class="page-subtitle">
+                Lección 1.0: Introducción al Curso
+            </p>
+            <p style="color: #999; font-size: 0.9rem; margin-top: 15px;">
+                Materiales complementarios para la introducción al curso de ondas y física moderna
+            </p>
+        </div>
+
+        <!-- Contenedor principal de recursos -->
+        <div class="resources-container">
+            
+            <!-- Sección: Notebooks de Colab -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📓</div>
+                    <div>
+                        <h2 class="section-title">Notebooks de Google Colab</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Cuadernos interactivos introductorios al curso de ondas y física moderna, 
+                    con herramientas computacionales para el análisis de fenómenos ondulatorios.
+                </p>
+                <div class="resource-grid">
+                    <a href="https://colab.research.google.com/drive/intro-ondas-conceptos" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🌊</div>
+                            <div class="resource-item-title">Conceptos Fundamentales de Ondas</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Panorama general del curso: objetivos, metodología y conceptos 
+                            fundamentales de ondas y física moderna.
+                        </div>
+                        <div class="resource-item-meta">Notebook interactivo • Python + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/mas-oscilaciones" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔄</div>
+                            <div class="resource-item-title">Movimiento Armónico Simple</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Introducción a herramientas matemáticas: análisis vectorial, 
+                            ecuaciones diferenciales y métodos numéricos.
+                        </div>
+                        <div class="resource-item-meta">Notebook matemático • NumPy + SciPy</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/visualizacion-ondas" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎨</div>
+                            <div class="resource-item-title">Visualización de Ondas</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Visualizaciones introductorias de fenómenos ondulatorios 
+                            y conceptos de física moderna usando Python.
+                        </div>
+                        <div class="resource-item-meta">Notebook gráfico • Plotly + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/constantes-ondas" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📐</div>
+                            <div class="resource-item-title">Constantes y Unidades en Ondas</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Constantes físicas fundamentales, unidades del SI 
+                            y sistemas de referencia en física moderna.
+                        </div>
+                        <div class="resource-item-meta">Notebook de referencia • SciPy constants</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sección: Ejercicios Propuestos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div>
+                        <h2 class="section-title">Ejercicios Propuestos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Ejercicios introductorios y de repaso de conceptos fundamentales 
+                    para preparar el estudio de ondas y oscilaciones.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🌊</div>
+                            <div class="resource-item-title">Conceptos de Ondas</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios básicos sobre definiciones, tipos de ondas, 
+                            y propiedades fundamentales de la propagación ondulatoria.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-conceptos-ondas.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-conceptos-ondas.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔄</div>
+                            <div class="resource-item-title">Repaso Matemático para Oscilaciones</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Problemas de cálculo diferencial, ecuaciones diferenciales 
+                            y funciones trigonométricas aplicadas a oscilaciones.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-repaso-matematico-ondas.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-repaso-matematico-ondas.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">⚖️</div>
+                            <div class="resource-item-title">Unidades en Fenómenos Ondulatorios</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios sobre unidades SI, conversiones de frecuencia, 
+                            longitud de onda y análisis dimensional en ondas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-unidades-ondas.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-unidades-ondas.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Exámenes Anteriores -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Exámenes Anteriores</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Preguntas de exámenes anteriores relacionadas con conceptos 
+                    introductorios y panorama general de ondas y óptica.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Examen Parcial 2023-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen parcial del primer semestre de 2023. Incluye conceptos fundamentales, 
+                            MAS y preparación para el estudio de ondas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/examen-parcial-ondas-2023-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/examen-parcial-ondas-2023-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Quiz Matemático 2022-II</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Evaluación corta sobre herramientas matemáticas para ondas: 
+                            funciones trigonométricas, derivadas y ecuaciones diferenciales.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/quiz-matematico-ondas-2022-2.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/quiz-matematico-ondas-2022-2.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Examen Final 2022-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen final comprensivo con énfasis en conceptos introductorios 
+                            y preparación para temas avanzados de ondas y óptica.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/examen-final-ondas-2022-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/examen-final-ondas-2022-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Evaluación Diagnóstica 2023</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Prueba diagnóstica para evaluar conocimientos previos necesarios 
+                            para el curso de ondas, oscilaciones y óptica.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/evaluacion-diagnostica-ondas-2023.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/evaluacion-diagnostica-ondas-2023.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Videos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <div>
+                        <h2 class="section-title">Videos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Videos introductorios al curso, panorama histórico de la física de ondas 
+                    y motivación para el estudio de oscilaciones y óptica.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Historia de la Física de Ondas</div>
+                            <div class="available">18 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Recorrido histórico desde Galileo y Newton hasta la óptica moderna, 
+                            mostrando la evolución del entendimiento de fenómenos ondulatorios.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=intro-fisica-ondas-historia" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Matemáticas para Ondas</div>
+                            <div class="available">25 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Repaso de herramientas matemáticas esenciales: funciones trigonométricas, 
+                            ecuaciones diferenciales y análisis de Fourier.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=matematicas-para-ondas" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Fenómenos Ondulatorios Cotidianos</div>
+                            <div class="available">20 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Introducción a ondas sonoras, ondas electromagnéticas 
+                            y ejemplos de oscilaciones en la vida diaria.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=fenomenos-ondulatorios-cotidianos" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Introducción a la Óptica</div>
+                            <div class="available">16 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Panorama general de óptica geométrica y ondulatoria, 
+                            aplicaciones tecnológicas y fenómenos luminosos.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=introduccion-optica" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Bibliografía -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Bibliografía Específica</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Referencias bibliográficas introductorias y capítulos recomendados 
+                    para comenzar el estudio de ondas, oscilaciones y óptica.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📘</div>
+                            <div class="resource-item-title">French - Vibrations and Waves</div>
+                            <div class="available">Cap. 1-2</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Vibrations and Waves" - A.P. French. 
+                            Capítulos 1-2: Oscilaciones simples y movimiento armónico.
+                        </div>
+                        <div class="resource-item-meta">Texto principal • MIT Introductory Physics</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📗</div>
+                            <div class="resource-item-title">Serway & Jewett - Física</div>
+                            <div class="available">Cap. 15-16</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Física para Ciencias e Ingeniería" - Serway & Jewett. 
+                            Capítulos 15-16: Oscilaciones y ondas mecánicas.
+                        </div>
+                        <div class="resource-item-meta">Texto complementario • 9na Edición</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📙</div>
+                            <div class="resource-item-title">Hecht - Optics</div>
+                            <div class="available">Cap. 1-3</div>
+                        </div>
+                        <div class="resource-item-description">
+                            "Optics" - Eugene Hecht. 
+                            Capítulos 1-3: Fundamentos de óptica y naturaleza de la luz.
+                        </div>
+                        <div class="resource-item-meta">Texto de referencia • 5ta Edición</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Materiales Varios -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🗂️</div>
+                    <div>
+                        <h2 class="section-title">Materiales Introductorios</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Syllabus del curso, cronograma de actividades y herramientas 
+                    necesarias para el estudio de ondas y óptica.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🧮</div>
+                            <div class="resource-item-title">Calculadora Científica Online</div>
+                            <div class="available">Gratis</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Calculadora avanzada con funciones trigonométricas, logarítmicas 
+                            y capacidades de cálculo para análisis de ondas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://www.desmos.com/scientific" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Acceder
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📊</div>
+                            <div class="resource-item-title">Wolfram Alpha</div>
+                            <div class="available">Online</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Motor computacional para resolver ecuaciones diferenciales, 
+                            calcular transformadas de Fourier y graficar funciones ondulatorias.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://www.wolframalpha.com" target="_blank" class="btn btn-primary">
+                                <span>🔗</span> Acceder
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📐</div>
+                            <div class="resource-item-title">Tabla de Constantes Físicas</div>
+                            <div class="available">PDF</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Compilación de constantes físicas fundamentales, velocidades de ondas 
+                            y valores de referencia para óptica y acústica.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/tabla-constantes-ondas.pdf" target="_blank" class="btn btn-primary">
+                                <span>📄</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔍</div>
+                            <div class="resource-item-title">Formulario de Funciones Trigonométricas</div>
+                            <div class="available">PDF</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Formulario completo de identidades trigonométricas, 
+                            derivadas e integrales útiles para ondas y oscilaciones.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/formulario-trigonometria-ondas.pdf" target="_blank" class="btn btn-primary">
+                                <span>📄</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Animación de entrada suave para las secciones
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📖 Página de Recursos - Lección 1.0: Introducción a Ondas y Óptica cargada');
+            
+            // Agregar efectos de hover mejorados
+            const resourceItems = document.querySelectorAll('.resource-item');
+            
+            resourceItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+                
+                // Agregar funcionalidad de click (placeholder)
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.resource-item-title').textContent;
+                    const status = this.querySelector('.coming-soon, .available');
+                    
+                    if (status && status.classList.contains('coming-soon')) {
+                        alert(`📋 "${title}"\n\n🔧 Este recurso estará disponible próximamente.\n\nTe notificaremos cuando esté listo para descargar.`);
+                    } else {
+                        alert(`📋 "${title}"\n\n✅ Recurso disponible.\n\n🔧 Funcionalidad de descarga en desarrollo...`);
+                    }
+                });
+            });
+            
+            // Scroll suave para navegación
+            const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
+            breadcrumbLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Permitir navegación normal a todas las páginas
+                    return;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

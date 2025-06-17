@@ -1,0 +1,181 @@
+/* =================================================================
+   ESTILOS ESPECÍFICOS PARA CURSO DE ONDAS Y ÓPTICA
+   ================================================================= */
+
+/* Variables de colores para ondas */
+:root {
+    --ondas-primary: #667eea;
+    --ondas-secondary: #764ba2;
+    --ondas-accent: #4facfe;
+    --ondas-light: rgba(102, 126, 234, 0.1);
+    --ondas-text: #2c3e50;
+    --ondas-shadow: rgba(102, 126, 234, 0.3);
+}
+
+/* Gradientes específicos para ondas */
+.ondas-gradient {
+    background: linear-gradient(135deg, var(--ondas-primary) 0%, var(--ondas-secondary) 100%);
+}
+
+.ondas-gradient-light {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+}
+
+/* Headers específicos para ondas */
+.course-header-ondas {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+}
+
+.course-title-ondas {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.course-subtitle-ondas {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Iconos específicos para temas de ondas */
+.icon-ondas::before { content: '🌊'; }
+.icon-mas::before { content: '🔄'; }
+.icon-moa::before { content: '📈'; }
+.icon-mof::before { content: '🎯'; }
+.icon-optica::before { content: '🔍'; }
+.icon-electro::before { content: '⚡'; }
+.icon-relatividad::before { content: '🚀'; }
+
+/* Cards específicos para módulos de ondas */
+.module-card-ondas {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    transition: all 0.3s ease;
+}
+
+.module-card-ondas:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+/* Botones específicos para ondas */
+.btn-ondas {
+    background: linear-gradient(135deg, var(--ondas-primary) 0%, var(--ondas-secondary) 100%);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--ondas-shadow);
+}
+
+.btn-ondas:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--ondas-shadow);
+    color: white;
+}
+
+.btn-ondas:active {
+    transform: translateY(0);
+}
+
+/* Progress bars para ondas */
+.progress-ondas {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-bar-ondas {
+    background: linear-gradient(90deg, var(--ondas-primary), var(--ondas-accent));
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* Estados de lecciones para ondas */
+.lesson-status-ondas {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.lesson-status-ondas.completed {
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+    color: white;
+}
+
+.lesson-status-ondas.in-progress {
+    background: linear-gradient(135deg, #ff9800, #ffb74d);
+    color: white;
+}
+
+.lesson-status-ondas.pending {
+    background: linear-gradient(135deg, #9e9e9e, #bdbdbd);
+    color: white;
+}
+
+/* Animaciones específicas para ondas */
+@keyframes wave-animation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-wave {
+    animation: wave-animation 2s ease-in-out infinite;
+}
+
+@keyframes pulse-ondas {
+    0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+}
+
+.pulse-ondas {
+    animation: pulse-ondas 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .course-title-ondas {
+        font-size: 2rem;
+    }
+    
+    .course-subtitle-ondas {
+        font-size: 1rem;
+    }
+    
+    .module-card-ondas {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .btn-ondas {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
