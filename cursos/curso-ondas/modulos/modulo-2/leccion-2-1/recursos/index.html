@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Estudio - Lección 2.1: Ecuación de onda</title>
+    <link rel="stylesheet" href="../../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../../css/lesson-sidebar.css">
+    <style>
+        /* Estilos específicos para la página de recursos */
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .resources-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .resource-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .resource-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resource-item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .resource-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .resource-item-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-meta {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .coming-soon {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .available {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .resource-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .resource-section:nth-child(2) { animation-delay: 0.1s; }
+        .resource-section:nth-child(3) { animation-delay: 0.2s; }
+        .resource-section:nth-child(4) { animation-delay: 0.3s; }
+        .resource-section:nth-child(5) { animation-delay: 0.4s; }
+        .resource-section:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header de la página -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../../../../../index.html">🏠 Inicio</a> › 
+                <a href="../../../../index.html">🌊 Ondas y Física Moderna</a> › 
+                <a href="../../index.html">📚 Módulo II</a> › 
+                <a href="../index.html">📖 Lección 2.1</a> › 
+                📖 Recursos
+            </div>
+            <h1 class="page-title">📖 Recursos de Estudio</h1>
+            <p class="page-subtitle">
+                Lección 2.1: Ecuación de onda
+            </p>
+            <p style="color: #999; font-size: 0.9rem; margin-top: 15px;">
+                Materiales complementarios para el estudio de la ecuación de onda y propagación ondulatoria
+            </p>
+        </div>
+
+        <!-- Contenedor principal de recursos -->
+        <div class="resources-container">
+            
+            <!-- Sección: Notebooks de Colab -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📓</div>
+                    <div>
+                        <h2 class="section-title">Notebooks de Google Colab</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Cuadernos interactivos para el análisis computacional de la ecuación de onda, 
+                    simulaciones de propagación ondulatoria y visualización de funciones de onda.
+                </p>
+                <div class="resource-grid">
+                    <a href="https://colab.research.google.com/drive/ecuacion-onda-derivacion" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🌊</div>
+                            <div class="resource-item-title">Derivación de la Ecuación de Onda</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Derivación paso a paso de la ecuación de onda desde principios físicos 
+                            y análisis de sus soluciones generales.
+                        </div>
+                        <div class="resource-item-meta">Notebook teórico • SymPy + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/propagacion-ondas" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📡</div>
+                            <div class="resource-item-title">Simulación de Propagación</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Simulación interactiva de ondas viajeras, velocidad de propagación 
+                            y efectos de diferentes condiciones iniciales.
+                        </div>
+                        <div class="resource-item-meta">Notebook interactivo • NumPy + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/soluciones-dalembert" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📐</div>
+                            <div class="resource-item-title">Solución de D'Alembert</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Análisis de la solución general de D'Alembert y representación 
+                            de ondas progresivas y regresivas.
+                        </div>
+                        <div class="resource-item-meta">Notebook matemático • SciPy + SymPy</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/velocidad-propagacion" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">⚡</div>
+                            <div class="resource-item-title">Velocidad de Propagación</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Estudio de la velocidad de propagación en diferentes medios 
+                            y relación con propiedades del material.
+                        </div>
+                        <div class="resource-item-meta">Notebook aplicado • Matplotlib + NumPy</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sección: Ejercicios Propuestos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div>
+                        <h2 class="section-title">Ejercicios Propuestos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Ejercicios específicos sobre la ecuación de onda, 
+                    soluciones analíticas y análisis de propagación ondulatoria.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🌊</div>
+                            <div class="resource-item-title">Derivación de la Ecuación</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios sobre la derivación de la ecuación de onda 
+                            desde la segunda ley de Newton y ley de Hooke.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-derivacion-ecuacion.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-derivacion-ecuacion.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📐</div>
+                            <div class="resource-item-title">Soluciones Analíticas</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Problemas sobre soluciones de la ecuación de onda, 
+                            método de separación de variables y condiciones de frontera.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-soluciones-analiticas.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-soluciones-analiticas.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📡</div>
+                            <div class="resource-item-title">Ondas Viajeras</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios sobre ondas progresivas y regresivas, 
+                            velocidad de fase y análisis de funciones de onda.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-ondas-viajeras.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-ondas-viajeras.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Exámenes Anteriores -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Exámenes Anteriores</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Preguntas de exámenes anteriores relacionadas específicamente 
+                    con la ecuación de onda y propagación ondulatoria.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Parcial Ecuación de Onda 2023-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen parcial enfocado en la derivación y soluciones 
+                            de la ecuación de onda unidimensional.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/parcial-ecuacion-onda-2023-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/parcial-ecuacion-onda-2023-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Quiz Propagación 2022-II</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Evaluación corta sobre velocidad de propagación, 
+                            medios elásticos y propiedades de las ondas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/quiz-propagacion-2022-2.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/quiz-propagacion-2022-2.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Videos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <div>
+                        <h2 class="section-title">Videos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Videos explicativos sobre la ecuación de onda, 
+                    demostraciones experimentales y visualizaciones de propagación.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Derivación de la Ecuación de Onda</div>
+                            <div class="available">32 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Explicación paso a paso de la derivación de la ecuación de onda 
+                            desde principios físicos fundamentales.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=derivacion-ecuacion-onda" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Visualización de Ondas</div>
+                            <div class="available">24 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Demostraciones visuales de propagación ondulatoria, 
+                            ondas estacionarias y efectos de reflexión.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=visualizacion-ondas" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Bibliografía -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Bibliografía Específica</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Referencias bibliográficas específicas para el estudio 
+                    de la ecuación de onda y propagación ondulatoria.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📘</div>
+                            <div class="resource-item-title">French - Vibrations and Waves</div>
+                            <div class="available">Cap. 9-10</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Capítulos 9-10: Ecuación de onda y ondas en medios continuos.
+                        </div>
+                        <div class="resource-item-meta">Texto principal • Ondas mecánicas</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📗</div>
+                            <div class="resource-item-title">Serway & Jewett - Física</div>
+                            <div class="available">Cap. 16.1-16.3</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Secciones 16.1-16.3: Propagación de ondas y ecuación de onda.
+                        </div>
+                        <div class="resource-item-meta">Texto complementario • Ecuación de onda</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Animación de entrada suave para las secciones
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📖 Página de Recursos - Lección 2.1: Ecuación de onda cargada');
+            
+            // Agregar efectos de hover mejorados
+            const resourceItems = document.querySelectorAll('.resource-item');
+            
+            resourceItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

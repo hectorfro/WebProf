@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Estudio - Lección 3.1: Ecuaciones de Maxwell y ondas electromagnéticas</title>
+    <link rel="stylesheet" href="../../../../../../assets/css/global-styles.css">
+    <link rel="stylesheet" href="../../../../css/lesson-sidebar.css">
+    <style>
+        /* Estilos específicos para la página de recursos */
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .resources-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .resource-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .resource-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resource-item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .resource-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .resource-item-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .resource-item-meta {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .coming-soon {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .available {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .resource-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .resource-section:nth-child(2) { animation-delay: 0.1s; }
+        .resource-section:nth-child(3) { animation-delay: 0.2s; }
+        .resource-section:nth-child(4) { animation-delay: 0.3s; }
+        .resource-section:nth-child(5) { animation-delay: 0.4s; }
+        .resource-section:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header de la página -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../../../../../index.html">🏠 Inicio</a> › 
+                <a href="../../../../index.html">🌊 Ondas y Física Moderna</a> › 
+                <a href="../../index.html">📚 Módulo III</a> › 
+                <a href="../index.html">📖 Lección 3.1</a> › 
+                📖 Recursos
+            </div>
+            <h1 class="page-title">📖 Recursos de Estudio</h1>
+            <p class="page-subtitle">
+                Lección 3.1: Ecuaciones de Maxwell y ondas electromagnéticas
+            </p>
+            <p style="color: #999; font-size: 0.9rem; margin-top: 15px;">
+                Materiales complementarios para el estudio de las ecuaciones de Maxwell y derivación de ondas electromagnéticas
+            </p>
+        </div>
+
+        <!-- Contenedor principal de recursos -->
+        <div class="resources-container">
+            
+            <!-- Sección: Notebooks de Colab -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📓</div>
+                    <div>
+                        <h2 class="section-title">Notebooks de Google Colab</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Cuadernos interactivos para el análisis computacional de las ecuaciones de Maxwell, 
+                    simulaciones de campos electromagnéticos y derivación de ondas electromagnéticas.
+                </p>
+                <div class="resource-grid">
+                    <a href="https://colab.research.google.com/drive/ecuaciones-maxwell" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">⚡</div>
+                            <div class="resource-item-title">Ecuaciones de Maxwell</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Análisis detallado de las cuatro ecuaciones de Maxwell y su significado físico, 
+                            incluyendo visualización de campos eléctricos y magnéticos.
+                        </div>
+                        <div class="resource-item-meta">Notebook teórico • SymPy + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/derivacion-ondas-em" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🌊</div>
+                            <div class="resource-item-title">Derivación de Ondas EM</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Derivación paso a paso de la ecuación de onda electromagnética 
+                            desde las ecuaciones de Maxwell en el vacío.
+                        </div>
+                        <div class="resource-item-meta">Notebook matemático • SymPy + NumPy</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/campos-em-dinamicos" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🔄</div>
+                            <div class="resource-item-title">Campos EM Dinámicos</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Simulación de campos eléctricos y magnéticos variables en el tiempo 
+                            y su relación con la propagación ondulatoria.
+                        </div>
+                        <div class="resource-item-meta">Notebook interactivo • Animation + Matplotlib</div>
+                    </a>
+                    
+                    <a href="https://colab.research.google.com/drive/velocidad-luz" target="_blank" class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">💡</div>
+                            <div class="resource-item-title">Velocidad de la Luz</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Cálculo de la velocidad de la luz desde las constantes fundamentales 
+                            ε₀ y μ₀ usando las ecuaciones de Maxwell.
+                        </div>
+                        <div class="resource-item-meta">Notebook aplicado • SciPy + SymPy</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sección: Ejercicios Propuestos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div>
+                        <h2 class="section-title">Ejercicios Propuestos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Ejercicios específicos sobre las ecuaciones de Maxwell, 
+                    derivación de ondas electromagnéticas y aplicaciones físicas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">⚡</div>
+                            <div class="resource-item-title">Ecuaciones de Maxwell</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios sobre la interpretación física de cada ecuación de Maxwell 
+                            y aplicaciones en diferentes configuraciones de campo.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-maxwell.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-maxwell.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🌊</div>
+                            <div class="resource-item-title">Derivación Ondas EM</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Problemas sobre la derivación matemática de la ecuación de onda 
+                            electromagnética y análisis de soluciones.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-derivacion-ondas-em.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-derivacion-ondas-em.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">💡</div>
+                            <div class="resource-item-title">Velocidad de la Luz</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Ejercicios sobre el cálculo de la velocidad de la luz 
+                            y su relación con las constantes fundamentales.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/ejercicios-velocidad-luz.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/ejercicios-velocidad-luz.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Exámenes Anteriores -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Exámenes Anteriores</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Preguntas de exámenes anteriores relacionadas específicamente 
+                    con las ecuaciones de Maxwell y ondas electromagnéticas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📋</div>
+                            <div class="resource-item-title">Parcial Maxwell 2023-I</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Examen parcial enfocado en las ecuaciones de Maxwell 
+                            y derivación de ondas electromagnéticas.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/parcial-maxwell-2023-1.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/parcial-maxwell-2023-1.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📄</div>
+                            <div class="resource-item-title">Quiz Ondas EM 2022-II</div>
+                            <div class="available">Disponible</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Evaluación corta sobre ondas electromagnéticas, 
+                            velocidad de la luz y campos dinámicos.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="pdf/quiz-ondas-em-2022-2.pdf" target="_blank" class="btn btn-primary">
+                                <span>👁️</span> Ver PDF
+                            </a>
+                            <a href="pdf/quiz-ondas-em-2022-2.pdf" download class="btn btn-secondary">
+                                <span>⬇️</span> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Videos -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <div>
+                        <h2 class="section-title">Videos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Videos explicativos sobre las ecuaciones de Maxwell, 
+                    demostraciones de campos electromagnéticos y derivaciones matemáticas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">▶️</div>
+                            <div class="resource-item-title">Ecuaciones de Maxwell Explicadas</div>
+                            <div class="available">35 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Explicación detallada de las cuatro ecuaciones de Maxwell 
+                            y su interpretación física fundamental.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=ecuaciones-maxwell" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">🎥</div>
+                            <div class="resource-item-title">Derivación Ondas Electromagnéticas</div>
+                            <div class="available">42 min</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Derivación matemática completa de la ecuación de onda 
+                            electromagnética desde las ecuaciones de Maxwell.
+                        </div>
+                        <div class="resource-item-meta">
+                            <a href="https://youtube.com/watch?v=derivacion-ondas-em" target="_blank" class="btn btn-primary">
+                                <span>▶️</span> Ver Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Bibliografía -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Bibliografía Específica</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Referencias bibliográficas específicas para el estudio 
+                    de las ecuaciones de Maxwell y ondas electromagnéticas.
+                </p>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📘</div>
+                            <div class="resource-item-title">Griffiths - Introduction to Electrodynamics</div>
+                            <div class="available">Cap. 9</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Capítulo 9: Ondas electromagnéticas y ecuaciones de Maxwell.
+                        </div>
+                        <div class="resource-item-meta">Texto principal • Electrodinámica</div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-item-header">
+                            <div class="resource-item-icon">📗</div>
+                            <div class="resource-item-title">Serway & Jewett - Física</div>
+                            <div class="available">Cap. 34.1-34.4</div>
+                        </div>
+                        <div class="resource-item-description">
+                            Secciones 34.1-34.4: Ecuaciones de Maxwell y ondas electromagnéticas.
+                        </div>
+                        <div class="resource-item-meta">Texto complementario • Ondas EM</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Animación de entrada suave para las secciones
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📖 Página de Recursos - Lección 3.1: Ecuaciones de Maxwell y ondas electromagnéticas cargada');
+            
+            // Agregar efectos de hover mejorados
+            const resourceItems = document.querySelectorAll('.resource-item');
+            
+            resourceItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
