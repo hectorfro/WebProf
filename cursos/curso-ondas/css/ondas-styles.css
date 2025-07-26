@@ -4,12 +4,12 @@
 
 /* Variables de colores para ondas */
 :root {
-    --ondas-primary: #667eea;
-    --ondas-secondary: #764ba2;
+    --ondas-primary: #2d5016;
+    --ondas-secondary: #4a7c20;
     --ondas-accent: #4facfe;
-    --ondas-light: rgba(102, 126, 234, 0.1);
+    --ondas-light: rgba(45, 80, 22, 0.1);
     --ondas-text: #2c3e50;
-    --ondas-shadow: rgba(102, 126, 234, 0.3);
+    --ondas-shadow: rgba(45, 80, 22, 0.3);
 }
 
 /* Gradientes específicos para ondas */
@@ -18,18 +18,18 @@
 }
 
 .ondas-gradient-light {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(45, 80, 22, 0.1) 0%, rgba(74, 124, 32, 0.1) 100%);
 }
 
 /* Headers específicos para ondas */
 .course-header-ondas {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2d5016 0%, #4a7c20 100%);
     color: white;
     padding: 40px 20px;
     text-align: center;
     border-radius: 20px;
     margin-bottom: 30px;
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 20px 40px rgba(45, 80, 22, 0.3);
 }
 
 .course-title-ondas {
@@ -61,15 +61,15 @@
     border-radius: 20px;
     padding: 30px;
     margin-bottom: 25px;
-    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
-    border: 1px solid rgba(102, 126, 234, 0.1);
+    box-shadow: 0 15px 35px rgba(45, 80, 22, 0.1);
+    border: 1px solid rgba(45, 80, 22, 0.1);
     transition: all 0.3s ease;
 }
 
 .module-card-ondas:hover {
     transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
-    border-color: rgba(102, 126, 234, 0.2);
+    box-shadow: 0 25px 50px rgba(45, 80, 22, 0.2);
+    border-color: rgba(45, 80, 22, 0.2);
 }
 
 /* Botones específicos para ondas */
@@ -100,7 +100,7 @@
 
 /* Progress bars para ondas */
 .progress-ondas {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(45, 80, 22, 0.1);
     border-radius: 10px;
     height: 8px;
     overflow: hidden;
@@ -150,9 +150,9 @@
 }
 
 @keyframes pulse-ondas {
-    0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
-    70% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(45, 80, 22, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(45, 80, 22, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(45, 80, 22, 0); }
 }
 
 .pulse-ondas {

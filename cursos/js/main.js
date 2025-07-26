@@ -906,7 +906,7 @@ function openResource(resourceType) {
 // =================================================================
 function showNotification(title, message, type = 'info') {
     const notificationColors = {
-        'info': '#667eea',
+        'info': '#2d5016',
         'success': '#4CAF50',
         'warning': '#ff9800',
         'error': '#f44336'

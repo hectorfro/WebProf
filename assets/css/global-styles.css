@@ -12,7 +12,24 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* GRADIENTE ORIGINAL (azul-morado): */
+    /* background: linear-gradient(135deg, #2d5016 0%, #4a7c20 100%); */
+    /* OPCIÓN 1: Verde Bosque Suave */
+    /* background: linear-gradient(135deg, #6b9b37 0%, #4a7c20 100%); */
+    /* OPCIÓN 2: Verde Salvia Elegante */
+    /* background: linear-gradient(135deg, #7ba05b 0%, #5d8240 100%); */
+    /* OPCIÓN 3: Verde Oliva Corporativo */
+    /* background: linear-gradient(135deg, #8fbc8f 0%, #6b8e6b 100%); */
+    /* OPCIÓN 4: Verde Eucalipto Claro */
+    /* background: linear-gradient(135deg, #90c695 0%, #6fa074 100%); */
+    /* OPCIÓN 5: Verde-Azul Suave (Verde UIS + azul claro) */
+    /* NO  background: linear-gradient(135deg, #4a7c20 0%, #87ceeb 100%); */
+    /* OPCIÓN 6: Verde-Gris (Verde + tonos neutros) */
+    /* NO background: linear-gradient(135deg, #6b9b37 0%, #8e9aaf 100%); */
+    /* OPCIÓN 7: Verde Degradé (Verde oscuro a verde claro) */
+     background: linear-gradient(135deg, #2d5016 0%, #a8d8a8 100%); 
+    /* OPCIÓN 8: Verde-Blanco (Verde UIS que se desvanece a blanco) */
+    /* background: linear-gradient(135deg, #4a7c20 0%, #ffffff 100%); */
     min-height: 100vh;
     color: #333;
 }
@@ -43,7 +60,7 @@ body {
 
 .title-section h1 {
     font-size: 2.5rem;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #2d5016, #a8d8a8);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -55,49 +72,23 @@ body {
     color: #666;
 }
 
-.teacher-menu {
-    position: relative;
-}
-
-.teacher-toggle {
-    background: rgba(102, 126, 234, 0.1);
-    border: 2px solid rgba(102, 126, 234, 0.3);
-    color: #667eea;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
+.university-logo {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
-.teacher-toggle:hover {
-    background: rgba(102, 126, 234, 0.2);
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+.uis-logo {
+    height: 100px;
+    width: auto;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
 }
 
-/* =================================================================
-   PANEL DEL PROFESOR (ESTILO GOOGLE CLASSROOM)
-   ================================================================= */
-.teacher-panel {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 2px solid rgba(102, 126, 234, 0.2);
-    display: none;
-    animation: slideDown 0.3s ease-out;
+.uis-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
-.teacher-panel.show {
-    display: block;
-}
 
 @keyframes slideDown {
     from {
@@ -116,11 +107,11 @@ body {
     align-items: center;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+    border-bottom: 2px solid rgba(45, 80, 22, 0.1);
 }
 
 .panel-header h3 {
-    color: #667eea;
+    color: #2d5016;
     font-size: 1.3rem;
 }
 
@@ -157,9 +148,9 @@ body {
 }
 
 .action-btn {
-    background: rgba(102, 126, 234, 0.1);
-    border: 2px solid rgba(102, 126, 234, 0.2);
-    color: #667eea;
+    background: rgba(45, 80, 22, 0.1);
+    border: 2px solid rgba(45, 80, 22, 0.2);
+    color: #2d5016;
     padding: 10px 20px;
     border-radius: 25px;
     cursor: pointer;
@@ -171,20 +162,20 @@ body {
 }
 
 .action-btn:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background: rgba(45, 80, 22, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
 }
 
 .action-btn.primary {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
+    background: linear-gradient(45deg, #2d5016, #4a7c20);
     color: white;
-    border-color: #4CAF50;
+    border-color: #2d5016;
 }
 
 .action-btn.primary:hover {
-    background: linear-gradient(45deg, #45a049, #3d8b40);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(45deg, #4a7c20, #6b9b37);
+    box-shadow: 0 5px 15px rgba(45, 80, 22, 0.4);
 }
 
 /* =================================================================
@@ -216,7 +207,7 @@ body {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #2d5016, #a8d8a8);
 }
 
 .course-card:hover {
@@ -254,7 +245,7 @@ body {
 }
 
 .enter-course-btn {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #2d5016, #4a7c20);
     color: white;
     border: none;
     padding: 12px 25px;
@@ -267,7 +258,7 @@ body {
 
 .enter-course-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 25px rgba(45, 80, 22, 0.4);
 }
 
 /* =================================================================
@@ -295,19 +286,19 @@ body {
 }
 
 .resource-card {
-    background: rgba(102, 126, 234, 0.05);
+    background: rgba(45, 80, 22, 0.05);
     padding: 25px;
     border-radius: 15px;
     text-align: center;
     transition: all 0.3s ease;
-    border: 2px solid rgba(102, 126, 234, 0.1);
+    border: 2px solid rgba(45, 80, 22, 0.1);
     cursor: pointer;
 }
 
 .resource-card:hover {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(45, 80, 22, 0.1);
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 25px rgba(45, 80, 22, 0.2);
 }
 
 .resource-icon {
@@ -316,7 +307,7 @@ body {
 }
 
 .resource-card h3 {
-    color: #667eea;
+    color: #2d5016;
     margin-bottom: 10px;
 }
 
@@ -380,14 +371,14 @@ body {
     background: #f8f9fa;
     border-radius: 15px;
     padding: 25px;
-    border-left: 5px solid #667eea;
+    border-left: 5px solid #2d5016;
     transition: all 0.3s ease;
 }
 
 .module-card:hover {
     background: #e3f2fd;
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 25px rgba(45, 80, 22, 0.2);
 }
 
 .module-title {
@@ -408,7 +399,7 @@ body {
 }
 
 .lesson-item {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(45, 80, 22, 0.1);
     padding: 12px 15px;
     margin-bottom: 8px;
     border-radius: 10px;
@@ -419,7 +410,7 @@ body {
 }
 
 .lesson-item:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background: rgba(45, 80, 22, 0.2);
     transform: translateX(5px);
 }
 
@@ -479,7 +470,7 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #2d5016;
 }
 
 .upload-area {
@@ -493,13 +484,13 @@ body {
 }
 
 .upload-area:hover {
-    border-color: #667eea;
-    background: rgba(102, 126, 234, 0.05);
+    border-color: #2d5016;
+    background: rgba(45, 80, 22, 0.05);
 }
 
 .upload-area.dragover {
-    border-color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
+    border-color: #2d5016;
+    background: rgba(45, 80, 22, 0.1);
     transform: scale(1.02);
 }
 
@@ -563,9 +554,6 @@ body {
         padding: 20px;
     }
     
-    .teacher-panel {
-        padding: 15px;
-    }
     
     .module-card {
         padding: 20px;
@@ -587,7 +575,6 @@ body {
 }
 
 .course-card,
-.teacher-panel,
 .header,
 .resources-section,
 .module-card {
@@ -601,12 +588,12 @@ html {
 
 /* Selección de texto personalizada */
 ::selection {
-    background: rgba(102, 126, 234, 0.3);
+    background: rgba(45, 80, 22, 0.3);
     color: #333;
 }
 
 ::-moz-selection {
-    background: rgba(102, 126, 234, 0.3);
+    background: rgba(45, 80, 22, 0.3);
     color: #333;
 }
 
@@ -640,8 +627,8 @@ html {
 
 .sidebar-header {
     padding: 20px;
-    border-bottom: 2px solid rgba(102, 126, 234, 0.1);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-bottom: 2px solid rgba(45, 80, 22, 0.1);
+    background: linear-gradient(135deg, #2d5016 0%, #4a7c20 100%);
     color: white;
     position: sticky;
     top: 0;
@@ -669,7 +656,7 @@ html {
 
 .lesson-nav-item {
     margin: 0;
-    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+    border-bottom: 1px solid rgba(45, 80, 22, 0.1);
 }
 
 .lesson-nav-link {
@@ -683,15 +670,15 @@ html {
 }
 
 .lesson-nav-link:hover {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(45, 80, 22, 0.1);
     transform: translateX(5px);
 }
 
 .lesson-nav-link.active {
-    background: linear-gradient(90deg, rgba(102, 126, 234, 0.2), transparent);
-    border-right: 4px solid #667eea;
+    background: linear-gradient(90deg, rgba(45, 80, 22, 0.2), transparent);
+    border-right: 4px solid #2d5016;
     font-weight: 600;
-    color: #667eea;
+    color: #2d5016;
 }
 
 .lesson-nav-link.active::before {
@@ -701,7 +688,7 @@ html {
     top: 0;
     width: 4px;
     height: 100%;
-    background: #667eea;
+    background: #2d5016;
 }
 
 .lesson-icon {
@@ -711,13 +698,13 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(45, 80, 22, 0.1);
     border-radius: 6px;
     font-size: 12px;
 }
 
 .lesson-nav-link.active .lesson-icon {
-    background: #667eea;
+    background: #2d5016;
     color: white;
 }
 
@@ -749,8 +736,8 @@ html {
     left: 20px;
     z-index: 1001;
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(102, 126, 234, 0.3);
-    color: #667eea;
+    border: 2px solid rgba(45, 80, 22, 0.3);
+    color: #2d5016;
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -764,9 +751,9 @@ html {
 }
 
 .sidebar-toggle:hover {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(45, 80, 22, 0.1);
     transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
 }
 
 .sidebar.collapsed + .main-content .sidebar-toggle {
@@ -789,7 +776,7 @@ html {
     bottom: 0;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-top: 2px solid rgba(102, 126, 234, 0.1);
+    border-top: 2px solid rgba(45, 80, 22, 0.1);
     padding: 15px 20px;
     display: flex;
     gap: 10px;
@@ -798,9 +785,9 @@ html {
 .nav-control-btn {
     flex: 1;
     padding: 10px;
-    border: 1px solid rgba(102, 126, 234, 0.3);
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    border: 1px solid rgba(45, 80, 22, 0.3);
+    background: rgba(45, 80, 22, 0.1);
+    color: #2d5016;
     border-radius: 8px;
     cursor: pointer;
     font-size: 12px;
@@ -814,7 +801,7 @@ html {
 }
 
 .nav-control-btn:hover:not(.disabled) {
-    background: rgba(102, 126, 234, 0.2);
+    background: rgba(45, 80, 22, 0.2);
     transform: translateY(-2px);
 }
 
@@ -876,11 +863,11 @@ html {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-    background: rgba(102, 126, 234, 0.3);
+    background: rgba(45, 80, 22, 0.3);
     border-radius: 3px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-    background: rgba(102, 126, 234, 0.5);
+    background: rgba(45, 80, 22, 0.5);
 }
 

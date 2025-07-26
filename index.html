@@ -15,47 +15,12 @@
                     <h1>🌟 La Web del Profe</h1>
                     <p>Prof. Héctor Hernández - Universidad Industrial de Santander - 2025</p>
                 </div>
-                <div class="teacher-menu">
-                    <button class="teacher-toggle" onclick="toggleTeacherPanel()" title="Panel del Profesor">
-                        ⚙️
-                    </button>
+                <div class="university-logo">
+                    <img src="assets/images/logo-uis.png" alt="Universidad Industrial de Santander" class="uis-logo">
                 </div>
             </div>
         </div>
 
-        <!-- Panel de Profesor (inicialmente oculto) -->
-        <div class="teacher-panel" id="teacherPanel">
-            <div class="panel-header">
-                <h3>👨‍🏫 Panel del Profesor</h3>
-                <button class="close-panel" onclick="toggleTeacherPanel()">✕</button>
-            </div>
-            <div class="teacher-actions">
-                <div class="action-row">
-                    <button class="action-btn primary" onclick="openUploadModal()">
-                        📤 Subir Contenido
-                    </button>
-                    <button class="action-btn" onclick="showStats()">
-                        📊 Estadísticas
-                    </button>
-                </div>
-                <div class="action-row">
-                    <button class="action-btn" onclick="manageAssignments()">
-                        📝 Gestionar Tareas
-                    </button>
-                    <button class="action-btn" onclick="gradebook()">
-                        📋 Calificaciones
-                    </button>
-                </div>
-                <div class="action-row">
-                    <button class="action-btn" onclick="announcements()">
-                        📢 Anuncios
-                    </button>
-                    <button class="action-btn" onclick="manageStudents()">
-                        👥 Estudiantes
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <!-- Cursos -->
         <div class="course-grid">
@@ -65,11 +30,6 @@
                 <div class="course-description">
                     Estudio completo de campos eléctricos, potencial eléctrico, circuitos DC y campos magnéticos. 
                     Curso organizado en 4 módulos progresivos con laboratorios virtuales y simulaciones interactivas.
-                </div>
-                <div class="course-stats">
-                    <span>🧪 8 Laboratorios</span>
-                    <span>👥 45 Estudiantes</span>
-                    <span>📈 73% Progreso Promedio</span>
                 </div>
                 <button class="enter-course-btn">Acceder al Curso</button>
             </div>
@@ -81,11 +41,6 @@
                     Análisis profundo del movimiento ondulatorio, ondas sonoras, interferencia, difracción y óptica geométrica. 
                     Estructurado en 4 módulos con experimentos de laboratorio avanzados.
                 </div>
-                <div class="course-stats">
-                    <span>🧪 6 Laboratorios</span>
-                    <span>👥 38 Estudiantes</span>
-                    <span>📈 68% Progreso Promedio</span>
-                </div>
                 <button class="enter-course-btn">Acceder al Curso</button>
             </div>
 
@@ -95,11 +50,6 @@
                 <div class="course-description">
                     Prácticas experimentales de electromagnetismo con enfoque en manejo de instrumentos, 
                     análisis de datos y elaboración de reportes científicos. Análisis estadístico con Python.
-                </div>
-                <div class="course-stats">
-                    <span>🔧 Instrumental Avanzado</span>
-                    <span>👥 45 Estudiantes</span>
-                    <span>📈 81% Progreso Promedio</span>
                 </div>
                 <button class="enter-course-btn">Acceder al Curso</button>
             </div>
@@ -138,54 +88,6 @@
         </div>
     </div>
 
-    <!-- Modal para subir contenido -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeUploadModal()">&times;</span>
-            <h2>📤 Subir Presentación de Clase</h2>
-            <form id="uploadForm">
-                <div class="form-group">
-                    <label>Curso:</label>
-                    <select id="courseSelect" onchange="updateModules()">
-                        <option value="">-- Seleccionar Curso --</option>
-                        <option value="fisica2">Física II - Electromagnetismo</option>
-                        <option value="fisica3">Física III - Ondas y Óptica</option>
-                        <option value="lab2">Laboratorio Física II</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Módulo:</label>
-                    <select id="moduleSelect" onchange="updateLessons()">
-                        <option value="">-- Seleccionar Módulo --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Lección:</label>
-                    <select id="lessonSelect">
-                        <option value="">-- Seleccionar Lección --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Título de la Presentación:</label>
-                    <input type="text" id="contentTitle" placeholder="Ej: Introducción a los Campos Eléctricos">
-                </div>
-                <div class="form-group">
-                    <label>Descripción:</label>
-                    <textarea id="contentDescription" rows="3" placeholder="Breve descripción de la presentación..."></textarea>
-                </div>
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <p>🎯 Arrastra la presentación aquí o haz clic para seleccionar</p>
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
-                        Formatos soportados: PDF, PPTX, PPT
-                    </p>
-                    <input type="file" id="fileInput" style="display: none;" accept=".pdf,.pptx,.ppt">
-                </div>
-                <button type="submit" class="action-btn primary" style="width: 100%; margin-top: 20px;">
-                    🚀 Subir Presentación
-                </button>
-            </form>
-        </div>
-    </div>
 
     <script src="cursos/js/main.js"></script>
 </body>
