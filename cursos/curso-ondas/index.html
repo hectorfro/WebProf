@@ -3,170 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso de Ondas y Física Moderna</title>
+    <title>Curso de Ondas y Óptica</title>
     <link rel="stylesheet" href="../../assets/css/global-styles.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #2d5016 0%, #4a7c20 100%);  /* Color de fondo explícito */
+        * {
             margin: 0;
             padding: 0;
-            min-height: 100vh;  /* Asegura que el fondo cubra toda la altura */
+            box-sizing: border-box;
         }
-        .course-content {
-            max-width: 1200px;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c20 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .course-content h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.8em;
-            color: #2c3e50;
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #2d5016;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .course-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
         }
 
         .course-description {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            font-size: 1.0em;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .course-description h2, .modules-list h2 {
+            color: #2d5016;
+            margin-bottom: 15px;
+        }
+
+        .course-description p {
+            color: #555;
+            line-height: 1.6;
         }
 
         .modules-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .module-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-
-        .module-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .module-card h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-
-        .module-card p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .module-card a {
-            display: inline-block;
-            text-decoration: none;
-            color: #3498db;
-            font-weight: bold;
-            padding: 8px 0;
-        }
-
-        .module-card a:hover {
-            color: #2980b9;
-        }
-
-        .course-objectives {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-
-        .course-objectives h2 {
-            color: #2c3e50;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
             margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .course-objectives ul {
-            padding-left: 20px;
+        .modules-list ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .course-objectives li {
-            margin-bottom: 10px;
-            color: #444;
+        .modules-list li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(45, 80, 22, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(45, 80, 22, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .modules-list li:hover {
+            background: rgba(45, 80, 22, 0.1);
+            transform: translateX(5px);
+        }
+
+        .modules-list a {
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d5016;
+        }
+
+        .modules-list p {
+            margin-top: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d5016;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 768px) {
-            .course-content {
+            .container {
                 padding: 10px;
             }
 
-            .course-content h1 {
-                font-size: 2em;
-            }
-
-            .modules-list {
-                grid-template-columns: 1fr;
+            .course-title {
+                font-size: 22px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="course-content">
-        <h1 style="color: white;">Curso de Ondas y Física Moderna</h1>
+    <div class="container">
+        <div class="header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Inicio</a> &gt;
+                <span>Física III - Ondas y Óptica</span>
+            </div>
+            <h1 class="course-title">Curso de Ondas y Óptica</h1>
+        </div>
 
         <div class="course-description">
             <h2>Descripción del Curso</h2>
-            <p>Este curso proporciona una introducción completa al movimiento ondulatorio y los fundamentos de la física moderna. 
-                Comenzamos con el estudio del movimiento armónico simple como base para comprender las oscilaciones, 
-                explorando sistemas amortiguados y forzados. Posteriormente, desarrollamos la teoría de ondas mecánicas, 
-                incluyendo la ecuación de onda, velocidad de propagación, reflexión, refracción e interferencia. 
-                Se estudian las ondas en cuerdas, las ondas sonoras y sus aplicaciones. El curso continúa con 
-                las ondas electromagnéticas, derivando las ecuaciones de Maxwell y analizando la propagación 
-                de la luz, polarización y fenómenos ópticos. Finalmente, se introduce la física moderna 
-                con los principios de la relatividad especial, el comportamiento cuántico de la luz 
-                (radiación del cuerpo negro, efecto fotoeléctrico, efecto Compton) y la dualidad 
+            <p>Este curso proporciona una introducción completa al movimiento ondulatorio y los fundamentos de la física moderna.
+                Comenzamos con el estudio del movimiento armónico simple como base para comprender las oscilaciones,
+                explorando sistemas amortiguados y forzados. Posteriormente, desarrollamos la teoría de ondas mecánicas,
+                incluyendo la ecuación de onda, velocidad de propagación, reflexión, refracción e interferencia.
+                Se estudian las ondas en cuerdas, las ondas sonoras y sus aplicaciones. El curso continúa con
+                las ondas electromagnéticas, derivando las ecuaciones de Maxwell y analizando la propagación
+                de la luz, polarización y fenómenos ópticos. Finalmente, se introduce la física moderna
+                con los principios de la relatividad especial, el comportamiento cuántico de la luz
+                (radiación del cuerpo negro, efecto fotoeléctrico, efecto Compton) y la dualidad
                 onda-partícula de De Broglie, estableciendo las bases para la mecánica cuántica.
-            </p>    
+            </p>
         </div>
 
         <div class="modules-list">
-            <div class="module-card">
-                <h3>Módulo I - Movimiento Ondulatorio</h3>
-                <p>Fundamentos del movimiento ondulatorio, ondas mecánicas y sus propiedades.</p>
-                <a href="modulos/modulo-1/index.html">Ver módulo →</a>
-            </div>
-
-            <div class="module-card">
-                <h3>Módulo II - Ondas Mecánicas</h3>
-                <p>Función de onda, ecuación de onda, velocidad de propagación y ondas estacionarias.</p>
-                <a href="modulos/modulo-2/index.html">Ver módulo →</a>
-            </div>
-
-            <div class="module-card">
-                <h3>Módulo III - Ondas Electromagnéticas</h3>
-                <p>Ecuaciones de Maxwell, ondas electromagnéticas y espectro electromagnético.</p>
-                <a href="modulos/modulo-3/index.html">Ver módulo →</a>
-            </div>
-
-            <div class="module-card">
-                <h3>Módulo IV - Introducción a la Física Moderna</h3>
-                <p>Relatividad, los tres grandes experimentos y principios de la mecánica cuántica.</p>
-                <a href="modulos/modulo-4/index.html">Ver módulo →</a>
-            </div>
-        </div>
-
-        <div class="course-objectives">
-            <h2>Objetivos Generales del Curso</h2>
+            <h2>Módulos del Curso:</h2>
             <ul>
-                <li>Comprender los fundamentos del movimiento ondulatorio y oscilatorio</li>
-                <li>Analizar la propagación de ondas mecánicas y electromagnéticas</li>
-                <li>Entender los principios básicos de la relatividad especial</li>
-                <li>Conocer los experimentos fundamentales de la física cuántica</li>
-                <li>Desarrollar habilidades en la resolución de problemas de ondas y física moderna</li>
+                <li>
+                    <a href="modulos/modulo-1/index.html">Módulo I - Movimiento Ondulatorio</a>
+                    <p>Fundamentos del movimiento ondulatorio, ondas mecánicas y sus propiedades.</p>
+                </li>
+                <li>
+                    <a href="modulos/modulo-2/index.html">Módulo II - Ondas Mecánicas</a>
+                    <p>Función de onda, ecuación de onda, velocidad de propagación y ondas estacionarias.</p>
+                </li>
+                <li>
+                    <a href="modulos/modulo-3/index.html">Módulo III - Ondas Electromagnéticas</a>
+                    <p>Ecuaciones de Maxwell, ondas electromagnéticas y espectro electromagnético.</p>
+                </li>
+                <li>
+                    <a href="modulos/modulo-4/index.html">Módulo IV - Introducción a la Física Moderna</a>
+                    <p>Relatividad, los tres grandes experimentos y principios de la mecánica cuántica.</p>
+                </li>
             </ul>
         </div>
+
+        <a href="../../index.html" class="back-btn">← Volver al Inicio</a>
     </div>
 
     <script src="../js/main.js"></script>
