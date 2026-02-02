@@ -6,24 +6,85 @@
     <title>Módulo III - Corriente Eléctrica</title>
     <link rel="stylesheet" href="../../../../assets/css/global-styles.css">
     <style>
-        /* ... los estilos que ya teníamos ... */
-        .module-content {
-            max-width: 1200px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c20 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .module-content h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #2d5016;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .module-title-header {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .module-subtitle {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .module-description, .module-objectives {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .module-description h2, .module-objectives h2, .lessons-list h2 {
+            color: #2d5016;
+            margin-bottom: 15px;
+        }
+
+        .module-description p {
+            color: #555;
+            line-height: 1.6;
         }
 
         .lessons-list {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .lessons-list ul {
@@ -32,30 +93,30 @@
         }
 
         .lessons-list li {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding: 15px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(45, 80, 22, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(45, 80, 22, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .lessons-list li:hover {
+            background: rgba(45, 80, 22, 0.1);
+            transform: translateX(5px);
         }
 
         .lessons-list a {
             text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d5016;
         }
 
         .lessons-list p {
             margin-top: 8px;
             color: #666;
-        }
-
-        .module-description, .module-objectives {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 0.9em;
         }
 
         .module-objectives ul {
@@ -64,13 +125,46 @@
 
         .module-objectives li {
             margin-bottom: 10px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d5016;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="module-content">
-        <h1  style="color: white;">Módulo III - Corriente Eléctrica</h1>
-        
+    <div class="container">
+        <div class="header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Curso Electromagnetismo</a> &gt;
+                <span>Módulo III - Corriente Eléctrica</span>
+            </div>
+            <h1 class="module-title-header">Módulo III - Corriente Eléctrica</h1>
+            <p class="module-subtitle">Corriente, resistencia, circuitos de corriente continua y campo magnético</p>
+        </div>
+
         <div class="module-description">
             <h2>Descripción del módulo</h2>
             <p>Fundamentos de la electricidad, propiedades de la carga eléctrica y la ley de Coulomb.</p>
@@ -104,8 +198,8 @@
                 <li>Dominar la aplicación de la Ley de Gauss</li>
             </ul>
         </div>
-    </div>
 
-    <script src="../../../../cursos/js/main.js"></script>
+        <a href="../../index.html" class="back-btn">← Volver al Curso</a>
+    </div>
 </body>
 </html>
