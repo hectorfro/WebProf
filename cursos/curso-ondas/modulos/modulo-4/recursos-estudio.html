@@ -43,6 +43,7 @@
         }
         .resources-container {
             display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
         }
         .resource-section {
@@ -152,9 +153,18 @@
             margin-bottom: 15px;
             opacity: 0.5;
         }
+        @media (max-width: 1024px) {
+            .resources-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
         @media (max-width: 768px) {
             .page-title {
                 font-size: 2.2rem;
+            }
+            .resources-container {
+                grid-template-columns: 1fr;
             }
             .section-header {
                 flex-direction: column;
@@ -208,22 +218,6 @@
 
             <div class="resource-section">
                 <div class="section-header">
-                    <div class="section-icon">📓</div>
-                    <div>
-                        <h2 class="section-title">Notebooks de Google Colab</h2>
-                    </div>
-                </div>
-                <p class="section-description">
-                    Cuadernos interactivos con simulaciones y ejercicios computacionales del módulo.
-                </p>
-                <div class="empty-state">
-                    <div class="empty-state-icon">📓</div>
-                    <p>Los notebooks estarán disponibles próximamente.</p>
-                </div>
-            </div>
-
-            <div class="resource-section">
-                <div class="section-header">
                     <div class="section-icon">📝</div>
                     <div>
                         <h2 class="section-title">Ejercicios Propuestos</h2>
@@ -256,6 +250,22 @@
 
             <div class="resource-section">
                 <div class="section-header">
+                    <div class="section-icon">📓</div>
+                    <div>
+                        <h2 class="section-title">Notebooks de Google Colab</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Cuadernos interactivos con simulaciones y ejercicios computacionales del módulo.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">📓</div>
+                    <p>Los notebooks estarán disponibles próximamente.</p>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <div class="section-header">
                     <div class="section-icon">🎥</div>
                     <div>
                         <h2 class="section-title">Videos</h2>
@@ -267,6 +277,22 @@
                 <div class="empty-state">
                     <div class="empty-state-icon">🎥</div>
                     <p>Los videos estarán disponibles próximamente.</p>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <div class="section-header">
+                    <div class="section-icon">🔬</div>
+                    <div>
+                        <h2 class="section-title">Simuladores Interactivos</h2>
+                    </div>
+                </div>
+                <p class="section-description">
+                    Simulaciones interactivas para visualizar y experimentar con los conceptos del módulo.
+                </p>
+                <div class="empty-state">
+                    <div class="empty-state-icon">🔬</div>
+                    <p>Los simuladores estarán disponibles próximamente.</p>
                 </div>
             </div>
 
